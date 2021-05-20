@@ -2,8 +2,11 @@ set(BINARY ${CMAKE_PROJECT_NAME})
 
 set(SOURCES
         main.cpp
-        simple_test.cpp
-        simple_test.h)
+        Map.cpp
+        Person.cpp
+        Person.h
+        Map.h
+        )
 
 add_executable(${CMAKE_PROJECT_NAME}_run ${SOURCES})
 

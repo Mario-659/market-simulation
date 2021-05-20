@@ -1,10 +1,8 @@
 #include <iostream>
 
-#include "simple_test.h"
 
 int main()
 {
-    simple_test obj;
-    std::cout << "Hello, World!  " << obj.add(375, 865) << std::endl;
+    std::cout << "Hello, World!  " << std::endl;
     return 0;
 }

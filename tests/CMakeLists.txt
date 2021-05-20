@@ -1,7 +1,10 @@
 set(BINARY ${CMAKE_PROJECT_NAME}_tst)
 
+include_directories(${PROJECT_SOURCE_DIR}/src)
+
 set(TEST_SOURCES
         main.cpp
+        Map-test.cpp
         )
 
 add_executable(${CMAKE_PROJECT_NAME}_tst ${TEST_SOURCES})
