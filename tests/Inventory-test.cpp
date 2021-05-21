@@ -5,7 +5,7 @@
 TEST(InventoryTest, ItemConstructor){
     Item a("Potato", 20);
 
-    EXPECT_EQ(a.getCost(), 20) << "Wrong cost";
+    EXPECT_EQ(a.getPrice(), 20) << "Wrong price";
     EXPECT_EQ(a.getName(), "Potato") << "Wrong name";
 }
 

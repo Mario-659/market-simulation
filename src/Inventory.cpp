@@ -1,14 +1,19 @@
 #include "Inventory.h"
 
-Item::Item(std::string Name, unsigned int Cost)
+
+
+Item::Item(std::string name, unsigned int price)
 {
-    this->name = Name;
-    this->cost = Cost;
+    this->name = name;
+    this->price = price;
 }
 
-unsigned int Item::getCost(){ return cost; }
+unsigned int Item::getPrice(){ return price; }
 
 std::string Item::getName(){ return name; }
+
+
+
 
 
 
@@ -17,14 +22,19 @@ Inventory::Inventory(unsigned money)
     this->money = money;
 }
 
+void Inventory::addItem(Item item)
+{
+    this->items.push_back(item);        //to be changed
+}
+
 void Inventory::changeGlobalPrices(int change)
 {
-    this->GlobalPrices += change;
+    GlobalPrices += change;
 }
 
 int Inventory::getGlobalPrices()
 {
-    return this->GlobalPrices;
+    return GlobalPrices;
 }
 
 unsigned int Inventory::getMoney()

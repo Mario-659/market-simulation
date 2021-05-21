@@ -7,26 +7,26 @@
 class Item
 {
 public:
-    Item(std::string, unsigned);
+    Item(std::string name, unsigned price);
 
-    unsigned getCost();
+    unsigned getPrice();
 
     std::string getName();
 
 private:
     std::string name;
 
-    unsigned cost;
+    unsigned price;
 };
 
 class Inventory
 {
 public:
-    Inventory(unsigned );
+    Inventory(unsigned money);
 
     int getGlobalPrices();
 
-    void changeGlobalPrices(int);
+    void changeGlobalPrices(int change);
 
     void changeMoney(int x);
 
@@ -34,7 +34,7 @@ public:
 
     std::vector<Item>* getItems();
 
-    //void addItem(Item);
+    void addItem(Item item);
 private:
     static int GlobalPrices;
 
