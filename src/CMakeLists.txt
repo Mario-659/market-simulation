@@ -4,6 +4,10 @@ set(SOURCES
         main.cpp
         Map.cpp
         Person.cpp
+        Specimens.cpp
+        Inventory.cpp
+        Inventory.h
+        Specimens.h
         Person.h
         Map.h
         )

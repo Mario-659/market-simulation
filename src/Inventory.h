@@ -1,0 +1,15 @@
+#ifndef MARKETSIMULATION_INVENTORY_H
+#define MARKETSIMULATION_INVENTORY_H
+
+class Item
+{
+
+};
+
+class Inventory
+{
+
+};
+
+
+#endif //MARKETSIMULATION_INVENTORY_H
