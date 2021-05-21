@@ -1,6 +1,6 @@
 #include <vector>
 #include <cstdlib>
-#include <ctime>
+#include <time.h>
 
 #include "Person.h"
 
@@ -8,8 +8,9 @@
 Person::Person(Position* x)
 {
     this->position = x;
-    //increaseCounter();
-    //this->id = counter;
+    increaseCounter();
+    this->id = counter;
+    x->changePointer(this);
 }
 
 
@@ -46,6 +47,13 @@ unsigned int Person::getID()
     return this->id;
 }
 
-//void Person::increaseCounter(){this->counter++;}
+Position * Person::getPosition()
+{
+    return this->position;
+}
 
-//void Person::decreaseCounter(){this->counter--;}
+void Person::increaseCounter(){this->counter++;}
+
+void Person::decreaseCounter(){this->counter--;}
+
+unsigned Person::counter = 0;

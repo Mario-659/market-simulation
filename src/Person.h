@@ -17,10 +17,10 @@ public:
 
     Person(Position*);
 
-    ~Person();
+//    ~Person();
 private:
 
-    //static unsigned counter;
+    static unsigned counter;
 
     unsigned id;
 
