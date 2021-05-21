@@ -6,6 +6,7 @@ set(TEST_SOURCES
         main.cpp
         Map-test.cpp
         Person-test.cpp
+        Inventory-test.cpp
         )
 
 add_executable(${CMAKE_PROJECT_NAME}_tst ${TEST_SOURCES})

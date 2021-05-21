@@ -30,8 +30,11 @@ public:
 
     void changeMoney(int x);
 
+    unsigned getMoney();
+
     std::vector<Item>* getItems();
 
+    //void addItem(Item);
 private:
     static int GlobalPrices;
 

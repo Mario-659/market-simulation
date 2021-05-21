@@ -27,6 +27,11 @@ int Inventory::getGlobalPrices()
     return this->GlobalPrices;
 }
 
+unsigned int Inventory::getMoney()
+{
+    return this->money;
+}
+
 void Inventory::changeMoney(int change)
 {
     if (change<0 && change*-1 >= this->money)  //checks if money + change <= 0
