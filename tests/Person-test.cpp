@@ -12,7 +12,7 @@ TEST(PersonTest, PersonConstructor){
     EXPECT_EQ(a.getPosition(), pos) << "Person has wrong Position pointer";
 }
 
-/*TEST(PersonTest, move){
+TEST(PersonTest, move){
     Map map(10);
     Person person(map.getPosition(2,3));
 
@@ -30,4 +30,7 @@ TEST(PersonTest, PersonConstructor){
     if(map.getPosition(1,2)->getPerson()!= nullptr) i++;
     if(map.getPosition(1,4)->getPerson()!= nullptr) i++;
     EXPECT_EQ(i, 1) << i << " Positions are populated (instead of 1)";
-}*/
+}
+
+
+//tests for moving when near border and with other Persons

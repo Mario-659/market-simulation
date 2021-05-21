@@ -1,5 +1,5 @@
 #include <vector>
-#include <cstdlib>
+#include <cstdlib>  //to be changed
 #include <time.h>
 
 #include "Person.h"
@@ -30,9 +30,11 @@ void Person::move(Map *map)
         for(int j=-1; j<2 ;j++)
         {
             if (y+j<0 || y+j>=map->getSize()) continue;   //checks if out of border
-            if(map->getPosition(x, y)->getPerson() == nullptr) freePositions.push_back(map->getPosition(x, y));
+            if(map->getPosition(x+i, y+j)->getPerson() == nullptr) freePositions.push_back(map->getPosition(x+i, y+j));
         }
     }
+
+    if(freePositions.empty()) return; //no Positions available
 
     srand(time(NULL));
     unsigned newPosition = rand() % freePositions.size();
