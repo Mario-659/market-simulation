@@ -29,24 +29,26 @@ public:
     ///Creates a Person on given position and with 0 money in Inventory
     Person(Position*);
 
-
+    ///Makes action according to it's type
     virtual void makeAction();
 
 //    ~Person();
 private:
 
+    ///Person's Inventory
     Inventory* inventory;
 
-    ///Counts population
+    ///Counter for assigning ID
     static unsigned counter;
 
+    ///ID
     unsigned id;
 
+    ///Person's position
     Position* position;
 
-    void increaseCounter();
-
-    void decreaseCounter();
+    ///Increments counter
+    void incrementCounter();
 };
 
 

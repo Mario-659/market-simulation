@@ -8,7 +8,7 @@
 Person::Person(Position *x, unsigned money)
 {
     this->position = x;
-    increaseCounter();
+    incrementCounter();
     this->id = counter;
     x->changePointer(this);
     this->inventory = new Inventory(money);
@@ -17,7 +17,7 @@ Person::Person(Position *x, unsigned money)
 Person::Person(Position *x)
 {
     this->position = x;
-    increaseCounter();
+    incrementCounter();
     this->id = counter;
     x->changePointer(this);
     this->inventory = new Inventory(0);
@@ -70,10 +70,8 @@ Inventory * Person::getInventory()
     return this->inventory;
 }
 
-void Person::increaseCounter(){this->counter++;}
-
-void Person::decreaseCounter(){this->counter--;}
+void Person::incrementCounter(){this->counter++;}
 
 unsigned Person::counter = 0;
 
-void Person::makeAction() {return;}
+void Person::makeAction() {}
