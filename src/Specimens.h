@@ -8,26 +8,32 @@
 class Customer :public Person
 {
 public:
-    void buy();
+    void makeAction();
 
     Customer();
 
 private:
+    void buy();
+
     bool isNearShopkeeper;
 
     unsigned probabilityOfBuying;
 
-    Inventory inventory;
 };
 
 class Shopkeeper :public Person
 {
 public:
-    void restock();
+
+    void makeAction();
+
+    void move();
 
     Shopkeeper();
 
 private:
+    void restock();
+
     unsigned margin;
 
     Inventory inventory;
@@ -36,22 +42,30 @@ private:
 class Thief :public Person
 {
 public:
-    void steal();
+
+    void makeAction();
 
     Thief();
 
 private:
+
+    void steal();
+
     bool isNearShopkeeper;
 };
 
 class Guard :public Person
 {
 public:
-    void catchThief();
+
+    void makeAction();
 
     Guard();
 
 private:
+
+    void catchThief();
+
     bool isNearThief;
 };
 

@@ -5,18 +5,28 @@
 #include "Person.h"
 
 
-Person::Person(Position* x)
+Person::Person(Position *x, unsigned money)
 {
     this->position = x;
     increaseCounter();
     this->id = counter;
     x->changePointer(this);
+    this->inventory = new Inventory(money);
 }
 
+Person::Person(Position *x)
+{
+    this->position = x;
+    increaseCounter();
+    this->id = counter;
+    x->changePointer(this);
+    this->inventory = new Inventory(0);
+
+}
 
 void Person::move(Map *map)
 {
-    //give near free positions
+
     unsigned x, y;
 
     x = this->position->getX();
@@ -24,6 +34,7 @@ void Person::move(Map *map)
 
     std::vector<Position*> freePositions;
 
+    //checks near Positions
     for(int i=-1; i<2 ;i++)
     {
         if (x+i<0 || x+i>=map->getSize()) continue;  //checks if out of border
@@ -54,8 +65,15 @@ Position * Person::getPosition()
     return this->position;
 }
 
+Inventory * Person::getInventory()
+{
+    return this->inventory;
+}
+
 void Person::increaseCounter(){this->counter++;}
 
 void Person::decreaseCounter(){this->counter--;}
 
 unsigned Person::counter = 0;
+
+void Person::makeAction() {return;}

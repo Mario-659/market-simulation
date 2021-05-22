@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include "Person.h"
 
-TEST(PersonTest, PersonConstructor){
+TEST(PersonTest, Person1Constructor){
     Position *pos = new Position(12, 15);
     Person a(pos);
     Person *per = &a;
@@ -10,6 +10,21 @@ TEST(PersonTest, PersonConstructor){
     EXPECT_EQ(a.getPosition()->getX(), pos->getX()) << "X coordinates don't match";
     EXPECT_EQ(per, pos->getPerson()) << "Position has wrong Person pointer";
     EXPECT_EQ(a.getPosition(), pos) << "Person has wrong Position pointer";
+
+    EXPECT_EQ(a.getInventory()->getMoney(), 0) << "Inventory has wrong money value with Person(Position*) constructor";
+}
+
+TEST(PersonTest, Person2Constructor){
+    Position *pos = new Position(13, 16);
+    Person a(pos, 100);
+    Person *per = &a;
+    EXPECT_EQ(a.getID(), 2) << "Wrong ID";
+    EXPECT_EQ(a.getPosition()->getY(), pos->getY()) << "Y coordinates don't match";
+    EXPECT_EQ(a.getPosition()->getX(), pos->getX()) << "X coordinates don't match";
+    EXPECT_EQ(per, pos->getPerson()) << "Position has wrong Person pointer";
+    EXPECT_EQ(a.getPosition(), pos) << "Person has wrong Position pointer";
+
+    EXPECT_EQ(a.getInventory()->getMoney(), 100) << "Inventory has wrong money value with Person(Position*) constructor";
 }
 
 TEST(PersonTest, move){
