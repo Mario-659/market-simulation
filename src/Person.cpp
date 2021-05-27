@@ -1,9 +1,7 @@
 #include <vector>
-#include <cstdlib>  //to be changed
-#include <time.h>
 
 #include "Person.h"
-
+#include "Random.h"
 
 Person::Person(Position *x, unsigned money)
 {
@@ -47,8 +45,8 @@ void Person::move(Map *map)
 
     if(freePositions.empty()) return; //no Positions available
 
-    srand(time(NULL));
-    unsigned newPosition = rand() % freePositions.size();
+
+    unsigned newPosition = Random::getRandInt(0, freePositions.size()-1);
     this->position->changePointer(nullptr);
     this->position = freePositions[newPosition];
     this->position->changePointer(this);

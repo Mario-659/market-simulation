@@ -10,6 +10,8 @@ set(SOURCES
         Specimens.h
         Person.h
         Map.h
+        Random.cpp
+        Random.h
         )
 
 add_executable(${CMAKE_PROJECT_NAME}_run ${SOURCES})
