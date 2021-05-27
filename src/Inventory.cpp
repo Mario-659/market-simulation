@@ -6,13 +6,17 @@ Item::Item(std::string name, unsigned int price)
 {
     this->name = name;
     this->price = price;
+    this->amount = 0;
 }
 
 unsigned int Item::getPrice(){ return price; }
 
 std::string Item::getName(){ return name; }
 
-
+void Item::setAmount(unsigned newAmount)
+{
+    this->amount = newAmount;
+}
 
 
 
@@ -27,9 +31,9 @@ void Inventory::addItem(Item item)
     this->items.push_back(item);        //to be changed
 }
 
-void Inventory::changeGlobalPrices(int change)
+void Inventory::setGlobalPrices(int newGlobalPrices)
 {
-    GlobalPrices += change;
+    this->GlobalPrices = newGlobalPrices;
 }
 
 int Inventory::getGlobalPrices()
@@ -58,4 +62,14 @@ std::vector<Item>* Inventory::getItems()
 }
 
 int Inventory::GlobalPrices = 0;
+
+const std::vector<Item> Inventory::defaultListOfItems = {
+        Item("carrot", 3),
+        Item("apple", 5),
+        Item("potato", 2),
+        Item("chicken", 8),
+        Item("milk", 6),
+        Item("beef", 14)
+        };
+
 

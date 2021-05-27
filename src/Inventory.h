@@ -15,12 +15,18 @@ public:
 
     ///Returns name
     std::string getName();
+
+    ///Sets number of Items
+    void setAmount(unsigned newAmount);
 private:
     ///Name of an Item
     std::string name;
 
     ///Price of an Item
     unsigned price;
+
+    ///Number of Items
+    unsigned amount;
 };
 
 class Inventory
@@ -32,8 +38,8 @@ public:
     ///Returns global prices
     int getGlobalPrices();
 
-    ///Changes global prices
-    void changeGlobalPrices(int change);
+    ///Sets global prices
+    void setGlobalPrices(int newGlobalPrices);
 
     ///Changes money
     void changeMoney(int x);
@@ -46,8 +52,12 @@ public:
 
     ///Adds Item
     void addItem(Item item);
+
+    ///Default list of every Item available to buy
+    const static std::vector<Item> defaultListOfItems;
+
 private:
-    ///Global prices that are added to Items when Shopkeeper restocks
+    ///Global prices are added to Items when Shopkeeper restocks
     static int GlobalPrices;
 
     ///Money
