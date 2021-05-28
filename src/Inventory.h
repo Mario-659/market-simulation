@@ -7,7 +7,7 @@
 class Item
 {
 public:
-    ///Creates an Item with given name and price
+    ///Creates an Item with given name and price (amount = 0)
     Item(std::string name, unsigned price);
 
     ///Returns price
@@ -16,8 +16,17 @@ public:
     ///Returns name
     std::string getName();
 
+    ///Returns number of Items
+    unsigned getAmount();
+
     ///Sets number of Items
     void setAmount(unsigned newAmount);
+
+    ///Decrements number of Items
+    void decrementAmount();
+
+    ///Increments number of Items
+    void incrementAmount();
 private:
     ///Name of an Item
     std::string name;
@@ -32,8 +41,11 @@ private:
 class Inventory
 {
 public:
-    ///Creates an Inventory with given money and no Items
+    ///Creates an Inventory with 0 money and 0 Items
     Inventory(unsigned money);
+
+    ///Creates an Inventory with 0 money and 0 Items
+    Inventory();
 
     ///Returns global prices
     int getGlobalPrices();

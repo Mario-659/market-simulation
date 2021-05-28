@@ -58,6 +58,11 @@ unsigned int Person::getID()
     return this->id;
 }
 
+unsigned int Person::getCounter()
+{
+    return counter;
+}
+
 Position * Person::getPosition()
 {
     return this->position;

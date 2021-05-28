@@ -2,10 +2,12 @@
 #include "Person.h"
 
 TEST(PersonTest, Person1Constructor){
-    Position *pos = new Position(12, 15);
+    int id = Person::getCounter() + 1;
+
+    auto pos = new Position(12, 15);
     Person a(pos);
     Person *per = &a;
-    EXPECT_EQ(a.getID(), 1) << "Wrong ID";
+    EXPECT_EQ(a.getID(), id) << "Wrong ID";
     EXPECT_EQ(a.getPosition()->getY(), pos->getY()) << "Y coordinates don't match";
     EXPECT_EQ(a.getPosition()->getX(), pos->getX()) << "X coordinates don't match";
     EXPECT_EQ(per, pos->getPerson()) << "Position has wrong Person pointer";
@@ -15,10 +17,12 @@ TEST(PersonTest, Person1Constructor){
 }
 
 TEST(PersonTest, Person2Constructor){
-    Position *pos = new Position(13, 16);
+    int id = Person::getCounter() + 1;
+
+    auto pos = new Position(13, 16);
     Person a(pos, 100);
     Person *per = &a;
-    EXPECT_EQ(a.getID(), 2) << "Wrong ID";
+    EXPECT_EQ(a.getID(), id) << "Wrong ID";
     EXPECT_EQ(a.getPosition()->getY(), pos->getY()) << "Y coordinates don't match";
     EXPECT_EQ(a.getPosition()->getX(), pos->getX()) << "X coordinates don't match";
     EXPECT_EQ(per, pos->getPerson()) << "Position has wrong Person pointer";

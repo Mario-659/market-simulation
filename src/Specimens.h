@@ -28,16 +28,13 @@ public:
     ///After 10 uses of this makeAction it will restock
     void makeAction();
 
-    Shopkeeper();
+    Shopkeeper(Position *position);
 private:
     ///Restocks it's inventory
     void restock();
 
     ///Margin is added to Item price
     unsigned margin;
-
-    ///Shopkeepers Inventory
-    Inventory inventory;
 
     ///Counts when to restock
     unsigned counterToRestock;
@@ -49,7 +46,7 @@ public:
     ///Steals from Shopkeeper if near him
     void makeAction();
 
-    Thief();
+    Thief(Position* position);
 private:
     ///Steals from Shopkeeper
     void steal();

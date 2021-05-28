@@ -13,9 +13,21 @@ unsigned int Item::getPrice(){ return price; }
 
 std::string Item::getName(){ return name; }
 
+unsigned int Item::getAmount() { return amount; }
+
 void Item::setAmount(unsigned newAmount)
 {
     this->amount = newAmount;
+}
+
+void Item::decrementAmount()
+{
+    this->amount--;
+}
+
+void Item::incrementAmount()
+{
+    this->amount++;
 }
 
 
@@ -25,6 +37,12 @@ Inventory::Inventory(unsigned money)
 {
     this->money = money;
 }
+
+Inventory::Inventory()
+{
+    this->money = 0;
+}
+
 
 void Inventory::addItem(Item item)
 {

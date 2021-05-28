@@ -15,6 +15,9 @@ public:
     ///Returns ID
     unsigned getID();
 
+    ///Returns counter
+    static unsigned getCounter();
+
 //    void checkNeighbours();
 
     ///Returns a pointer to Person's Position
