@@ -5,23 +5,6 @@
 #include "Person.h"
 #include "Inventory.h"
 
-class Customer :public Person
-{
-public:
-    ///Buys Items if near Shopkeeper
-    void makeAction();
-
-    Customer();
-private:
-    ///Buys Items
-    void buy();
-
-//    bool isNearShopkeeper;
-
-    ///Probability of buying an Item
-    unsigned probabilityOfBuying;
-};
-
 class Shopkeeper :public Person
 {
 public:
@@ -53,6 +36,25 @@ private:
 
     //bool isNearShopkeeper;
 };
+
+
+class Customer :public Person
+{
+public:
+    ///Buys Items if near Shopkeeper
+    void makeAction(Map* map);
+
+    Customer(Position *position);
+private:
+    ///Buys Items
+    void buy(Inventory* sellersInventory);
+
+//    bool isNearShopkeeper;
+
+    ///Probability of buying an Item
+    unsigned probabilityOfBuying;
+};
+
 
 class Guard :public Person
 {
