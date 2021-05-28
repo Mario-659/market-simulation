@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 
 #include "Random.h"
-#include "Specimens.h"
+#include "Shopkeeper.h"
 
 
 TEST(MarketTest, ShopkeeperConstructor){

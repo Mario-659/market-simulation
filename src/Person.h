@@ -35,6 +35,13 @@ public:
     ///Makes action according to it's type
     virtual void makeAction();
 
+
+    //virtual void sell();
+
+    //virtual void steal();
+
+    //virtual void catchThief();
+
 //    ~Person();
 private:
 

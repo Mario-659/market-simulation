@@ -77,4 +77,4 @@ void Person::incrementCounter(){this->counter++;}
 
 unsigned Person::counter = 0;
 
-void Person::makeAction() {}
+void Person::makeAction() {};

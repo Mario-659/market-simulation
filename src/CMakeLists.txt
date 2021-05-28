@@ -4,12 +4,18 @@ set(SOURCES
         main.cpp
         Map.cpp
         Person.cpp
-        Specimens.cpp
         Inventory.cpp
         Inventory.h
-        Specimens.h
         Person.h
         Map.h
+        Shopkeeper.cpp
+        Shopkeeper.h
+        Customer.cpp
+        Customer.h
+        Thief.cpp
+        Thief.h
+        Guard.cpp
+        Guard.h
         Random.cpp
         Random.h
         )
