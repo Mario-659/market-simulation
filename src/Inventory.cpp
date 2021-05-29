@@ -56,11 +56,12 @@ void Inventory::addItem(Item item)
         }
     }
     this->items.push_back(item);        //adds new item
+    this->items.back().incrementAmount();
 }
 
 void Inventory::setGlobalPrices(int newGlobalPrices)
 {
-    this->GlobalPrices = newGlobalPrices;
+    Inventory::GlobalPrices = newGlobalPrices;
 }
 
 int Inventory::getGlobalPrices()

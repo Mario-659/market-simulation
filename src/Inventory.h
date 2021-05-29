@@ -48,10 +48,10 @@ public:
     Inventory();
 
     ///Returns global prices
-    int getGlobalPrices();
+    static int getGlobalPrices();
 
     ///Sets global prices
-    void setGlobalPrices(int newGlobalPrices);
+    static void setGlobalPrices(int newGlobalPrices);
 
     ///Changes money
     void changeMoney(int x);
