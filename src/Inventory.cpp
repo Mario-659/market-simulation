@@ -4,7 +4,7 @@
 
 Item::Item(std::string name, unsigned int price)
 {
-    this->name = name;
+    this->name = std::move(name);
     this->price = price;
     this->amount = 0;
 }
@@ -56,7 +56,7 @@ void Inventory::addItem(Item item)
         }
     }
     this->items.push_back(item);        //adds new item
-    this->items.back().incrementAmount();
+    this->items.back().setAmount(1);
 }
 
 void Inventory::setGlobalPrices(int newGlobalPrices)

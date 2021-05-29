@@ -59,6 +59,8 @@ void Shopkeeper::sell(Person* buyer, unsigned probabilityOfBuying)
     bool canBuy = true;
     for(int i=0, j=0; Random::getDecision(probabilityOfBuying) && (canBuy==true); i++)    //int j counts Items customer cannot buy either because Shopkeeper has 0 number of given Item or the price is too high)
     {
+        if(i >= sequenceOfBuying.size()) i = 0;
+
         Item* itemToBuy = &(this->getInventory()->getItems()->at(sequenceOfBuying.at(i)));
         unsigned priceOfItem = itemToBuy->getPrice() + this->margin;
 
