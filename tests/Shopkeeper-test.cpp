@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 
 #include "Shopkeeper.h"
+#include "Customer.h"
 
 
 TEST(ShopkeeperTest, ShopkeeperConstructor){
@@ -56,3 +57,36 @@ TEST(ShopkeeperTest, makeAction){
     EXPECT_TRUE(inventoryChanged) << "Inventory didn't restock";
 }
 
+TEST(ShopkeeperTest, sell){
+    auto pos1 = new Position(23, 14);
+    Customer customer(pos1);
+    auto pos2 = new Position(11, 11);
+    Shopkeeper shopkeeper(pos2);
+    Inventory previousState = *shopkeeper.getInventory();
+
+    customer.getInventory()->changeMoney(200);
+
+    shopkeeper.sell(&customer, customer.getProbability());
+
+    Inventory exchangedItems;         //Inventory to store sold Items
+
+    bool inventoryChanged = false;  //for checking if seller's Inventory changed
+    for(int i=0; i<shopkeeper.getInventory()->getItems()->size(); i++)
+    {
+        Item item = shopkeeper.getInventory()->getItems()->at(i);
+        if(item.getAmount() != previousState.getItems()->at(i).getAmount()) {
+            inventoryChanged = true;
+            exchangedItems.addItem(item);
+        }
+    }
+    EXPECT_TRUE(inventoryChanged) << "Inventory didn't change after selling";
+    
+    //checking if in buyer's Inventory are all sold Items
+    for(int i=0; i<customer.getInventory()->getItems()->size(); i++)
+    {
+        Item item = customer.getInventory()->getItems()->at(i);
+        EXPECT_EQ(item.getName(), exchangedItems.getItems()->at(i).getName()) << "wrong name of sold Item";
+        EXPECT_EQ(item.getPrice(), exchangedItems.getItems()->at(i).getPrice()) << "wrong price of sold Item";
+        EXPECT_EQ(item.getAmount(), exchangedItems.getItems()->at(i).getAmount()) << "wrong number of sold Item";
+    }
+}

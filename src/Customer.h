@@ -9,6 +9,9 @@ public:
     ///Buys Items if near Shopkeeper
     void makeAction(Map* map);
 
+    ///Returns probabilityOfBuying
+    unsigned getProbability();
+
     ///Creates a Customer on given position with random probabilityOfBuying
     Customer(Position *position);
 private:
