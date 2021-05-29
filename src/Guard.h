@@ -6,15 +6,12 @@
 class Guard :public Person
 {
 public:
-    ///Catches Thief if near him
-    void makeAction();
+    ///Catches Thief if near him, returns stolen Items and deletes Thief
+    void makeAction(Map* map);
 
-    Guard();
+    Guard(Position* position);
 private:
-    ///Returns stolen Items and deletes Thief
-    void catchThief();
 
-    //bool isNearThief;
 };
 
 
