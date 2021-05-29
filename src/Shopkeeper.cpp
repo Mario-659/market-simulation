@@ -24,7 +24,7 @@ void Shopkeeper::restock()
 
     while(true)
     {
-        itemToRestock = Random::getRandInt(0, shopInventory->getItems()->size()-1);
+        itemToRestock = Random::getRandInt(0, Inventory::defaultListOfItems.size()-1);
         int priceOfItem = shopInventory->getItems()->at(itemToRestock).getPrice() + this->getInventory()->getGlobalPrices();
 
         if(shopInventory->getMoney() >= priceOfItem)

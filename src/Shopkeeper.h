@@ -19,11 +19,8 @@ private:
     ///Restocks it's inventory
     void restock();
 
-    ///Margin is added to Item price
+    ///Margin is added to Item price when selling
     unsigned margin;
-
-    ///Counts when to restock
-    unsigned counterToRestock;
 };
 
 
