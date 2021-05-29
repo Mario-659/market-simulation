@@ -46,7 +46,16 @@ Inventory::Inventory()
 
 void Inventory::addItem(Item item)
 {
-    this->items.push_back(item);        //to be changed
+    int sizeOfInventory = this->getItems()->size();
+    for(int i=0; i<sizeOfInventory && sizeOfInventory != 0; i++)
+    {
+        if(this->getItems()->at(i).getName() == item.getName())         //if given Item is already in Inventory then increments amount and returns
+        {
+            this->getItems()->at(i).incrementAmount();
+            return;
+        }
+    }
+    this->items.push_back(item);        //adds new item
 }
 
 void Inventory::setGlobalPrices(int newGlobalPrices)
