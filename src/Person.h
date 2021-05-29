@@ -39,7 +39,7 @@ public:
 
     virtual void sell(Person* buyer, unsigned probabilityOfBuying);
 
-    virtual void steal(Person* thief);
+    virtual void steal(Person* thief, unsigned probability);
 
     virtual void catchThief(Person* guard);
 

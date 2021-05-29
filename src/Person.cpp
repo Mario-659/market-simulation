@@ -101,6 +101,6 @@ void Person::makeAction(Map* map) {};
 
 void Person::sell(Person* buyer, unsigned probabilityOfBuying) {};
 
-void Person::steal(Person* thief) {};
+void Person::steal(Person* thief, unsigned probability) {};
 
 void Person::catchThief(Person* guard) {};

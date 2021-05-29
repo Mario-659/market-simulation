@@ -10,7 +10,7 @@ public:
     ///After 10 uses of this makeAction it will restock
     void makeAction();
 
-    void steal();
+    void steal(Person* thief, unsigned probability);
 
     void sell(Person* buyer, unsigned probabilityOfBuying);
 

@@ -89,7 +89,20 @@ void Shopkeeper::sell(Person* buyer, unsigned probabilityOfBuying)
 
 }
 
-void Shopkeeper::steal()
+void Shopkeeper::steal(Person* thief, unsigned probability)
 {
+    unsigned sizeOfInventory = this->getInventory()->getItems()->size();    //size of Shopkeeper's Inventory
 
+    for(int i=0; i < sizeOfInventory; i++)                     //loop for every type of Item in Inventory
+    {
+        Item item = this->getInventory()->getItems()->at(i);
+        for(unsigned j=item.getAmount(); j > 0; j--)           //loop for every number of Item
+        {
+            if(Random::getDecision(probability))
+            {
+                thief->getInventory()->addItem(item);
+                this->getInventory()->getItems()->at(i).decrementAmount();
+            }
+        }
+    }
 }

@@ -6,15 +6,15 @@
 class Thief :public Person
 {
 public:
-    ///Steals from Shopkeeper if near him
-    void makeAction();
+    ///Steals from Shopkeeper if near him (25% of Inventory)
+    void makeAction(Map* map);
 
     Thief(Position* position);
 private:
 /*    ///Steals from Shopkeeper
     void steal();*/
 
-    //bool isNearShopkeeper;
+    unsigned probabilityOfBuying;
 };
 
 #endif //MARKETSIMULATION_THIEF_H
