@@ -8,6 +8,7 @@ set(TEST_SOURCES
         Person-test.cpp
         Inventory-test.cpp
         Shopkeeper-test.cpp
+        Customer-test.cpp
         )
 
 add_executable(${CMAKE_PROJECT_NAME}_tst ${TEST_SOURCES})

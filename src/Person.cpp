@@ -97,7 +97,7 @@ void Person::incrementCounter(){this->counter++;}
 
 unsigned Person::counter = 0;
 
-void Person::makeAction() {};
+void Person::makeAction(Map* map) {};
 
 void Person::sell(Person* buyer, unsigned probabilityOfBuying) {};
 

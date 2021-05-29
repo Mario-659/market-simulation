@@ -62,8 +62,9 @@ TEST(ShopkeeperTest, sell){
     Customer customer(pos1);
     auto pos2 = new Position(11, 11);
     Shopkeeper shopkeeper(pos2);
-    Inventory previousState = *shopkeeper.getInventory();
+    Inventory previousStateShop = *shopkeeper.getInventory();
     customer.getInventory()->changeMoney(200);
+    Inventory previousStateCust = *customer.getInventory();
 
     shopkeeper.sell(&customer, customer.getProbability());
 
@@ -73,12 +74,12 @@ TEST(ShopkeeperTest, sell){
     for(int i=0; i<shopkeeper.getInventory()->getItems()->size(); i++)
     {
         Item item = shopkeeper.getInventory()->getItems()->at(i);
-        if(item.getAmount() != previousState.getItems()->at(i).getAmount()) {
+        if(item.getAmount() != previousStateShop.getItems()->at(i).getAmount()) {
             inventoryChanged = true;
             exchangedItems.addItem(item);
         }
     }
-    //EXPECT_TRUE(inventoryChanged) << "Inventory didn't change after selling";
+    EXPECT_TRUE(inventoryChanged) << "Inventory didn't change after selling";
 
     EXPECT_EQ(exchangedItems.getItems()->size(), customer.getInventory()->getItems()->size()) << "size of exchangedItems is different than size of customer's Inventory";
 }

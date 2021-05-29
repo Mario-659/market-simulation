@@ -34,7 +34,7 @@ public:
     Person(Position*);
 
     ///Makes action according to it's type
-    virtual void makeAction();
+    virtual void makeAction(Map* map);
 
 
     virtual void sell(Person* buyer, unsigned probabilityOfBuying);

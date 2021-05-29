@@ -26,7 +26,7 @@ void Customer::makeAction(Map* map)
             if (y+j<0 || y+j>=map->getSize()) continue;   //checks if out of border
 
             Person *otherPerson = map->getPosition(x+i, y+j)->getPerson();
-            if(otherPerson != nullptr) sell(this, this->probabilityOfBuying);
+            if(otherPerson != nullptr) otherPerson->sell(this, this->probabilityOfBuying);
         }
     }
 }
