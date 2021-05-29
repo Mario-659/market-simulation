@@ -52,6 +52,26 @@ void Person::move(Map *map)
     this->position->changePointer(this);
 }
 
+//void Person::checkNeighbours(void (*action)(), Map* map)
+//{
+//    unsigned x, y;
+//
+//    x = this->position->getX();
+//    y = this->position->getY();
+//
+//    //checks near Positions
+//    for(int i=-1; i<2 ;i++)
+//    {
+//        if (x+i<0 || x+i>=map->getSize()) continue;  //checks if out of border
+//        for(int j=-1; j<2 ;j++)
+//        {
+//            if (y+j<0 || y+j>=map->getSize()) continue;   //checks if out of border
+//
+//            Person *otherPerson = map->getPosition(x+i, y+j)->getPerson();
+//            //if(otherPerson != nullptr) otherPerson->;
+//        }
+//    }
+//}
 
 unsigned int Person::getID()
 {
@@ -78,3 +98,9 @@ void Person::incrementCounter(){this->counter++;}
 unsigned Person::counter = 0;
 
 void Person::makeAction() {};
+
+void Person::sell(Person* buyer, unsigned probabilityOfBuying) {};
+
+void Person::steal(Person* thief) {};
+
+void Person::catchThief(Person* guard) {};

@@ -18,7 +18,8 @@ public:
     ///Returns counter
     static unsigned getCounter();
 
-//    void checkNeighbours();
+//    ///
+//    void checkNeighbours(void action(), Map* map);
 
     ///Returns a pointer to Person's Position
     Position* getPosition();
@@ -36,11 +37,11 @@ public:
     virtual void makeAction();
 
 
-    //virtual void sell();
+    virtual void sell(Person* buyer, unsigned probabilityOfBuying);
 
-    //virtual void steal();
+    virtual void steal(Person* thief);
 
-    //virtual void catchThief();
+    virtual void catchThief(Person* guard);
 
 //    ~Person();
 private:

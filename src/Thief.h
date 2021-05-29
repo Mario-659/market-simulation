@@ -11,8 +11,8 @@ public:
 
     Thief(Position* position);
 private:
-    ///Steals from Shopkeeper
-    void steal();
+/*    ///Steals from Shopkeeper
+    void steal();*/
 
     //bool isNearShopkeeper;
 };

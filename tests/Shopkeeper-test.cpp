@@ -13,7 +13,8 @@ TEST(MarketTest, ShopkeeperConstructor){
     ASSERT_EQ(shopkeeper.getInventory()->getItems()->size(), listOfItems.size()) << "Vector items and defaultListItems are of unequal length";
 //    for(int i=0; i<listOfItems.size(); i++)
 //    {
-//        EXPECT_EQ((*shopkeeper.getInventory()->getItems())[i], listOfItems[i]);   //doesn't compile
+//        Item item = shopkeeper.getInventory()->getItems()->at(i);
+//        EXPECT_EQ(item, listOfItems[i]);   //doesn't compile
 //    }
 
     int amountOfItems;
@@ -23,5 +24,4 @@ TEST(MarketTest, ShopkeeperConstructor){
         amountOfItems = shopkeeper.getInventory()->getItems()->at(i).getAmount();
         EXPECT_TRUE(amountOfItems>=0 && amountOfItems <=6) << "Amount of Items is in wrong range";
     }
-
 }

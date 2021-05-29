@@ -9,14 +9,10 @@ public:
     ///Buys Items if near Shopkeeper
     void makeAction(Map* map);
 
+    ///Creates a Customer on given position with random probabilityOfBuying
     Customer(Position *position);
 private:
-    ///Buys Items
-    void buy(Inventory* sellersInventory);
-
-//    bool isNearShopkeeper;
-
-    ///Probability of buying an Item
+    ///Probability of buying an Item (in range [70, 100] / 100)
     unsigned probabilityOfBuying;
 };
 
