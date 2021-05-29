@@ -12,6 +12,8 @@ public:
     void catchThief(Person* guard);
 
     Thief(Position* position);
+
+    ~Thief();
 private:
 
     unsigned probabilityOfStealing;

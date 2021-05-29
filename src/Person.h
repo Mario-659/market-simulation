@@ -33,9 +33,11 @@ public:
     ///Creates a Person on given position and with 0 money in Inventory
     Person(Position*);
 
+
+    virtual ~Person();
+
     ///Makes action according to it's type
     virtual void makeAction(Map* map);
-
 
     virtual void sell(Person* buyer, unsigned probabilityOfBuying);
 
@@ -43,7 +45,6 @@ public:
 
     virtual void catchThief(Person* guard);
 
-//    ~Person();
 private:
 
     ///Person's Inventory

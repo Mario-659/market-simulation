@@ -10,6 +10,8 @@ public:
     void makeAction(Map* map);
 
     Guard(Position* position);
+
+    ~Guard();
 private:
 
 };

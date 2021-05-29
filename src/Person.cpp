@@ -93,6 +93,11 @@ Inventory * Person::getInventory()
     return this->inventory;
 }
 
+Person::~Person()
+{
+    this->position->changePointer(nullptr);
+}
+
 void Person::incrementCounter(){this->counter++;}
 
 unsigned Person::counter = 0;

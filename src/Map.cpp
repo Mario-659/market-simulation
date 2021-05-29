@@ -57,3 +57,13 @@ unsigned int Map::getSize()
 {
     return this->size;
 }
+
+Position::~Position()
+{
+    delete this->ptr;
+}
+
+Map::~Map()
+{
+    for(auto pos: this->board) delete pos;
+}

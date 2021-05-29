@@ -32,3 +32,9 @@ void Customer::makeAction(Map* map)
 }
 
 unsigned int Customer::getProbability() { return this->probabilityOfBuying; }
+
+Customer::~Customer()
+{
+    this->getPosition()->changePointer(nullptr);
+    delete this->getInventory();
+}

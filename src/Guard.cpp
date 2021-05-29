@@ -22,3 +22,9 @@ void Guard::makeAction(Map* map)
         }
     }
 }
+
+Guard::~Guard()
+{
+    this->getPosition()->changePointer(nullptr);
+    delete this->getInventory();
+}

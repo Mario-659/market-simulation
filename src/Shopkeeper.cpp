@@ -106,3 +106,9 @@ void Shopkeeper::steal(Person* thief, unsigned probability)
         }
     }
 }
+
+Shopkeeper::~Shopkeeper()
+{
+    this->getPosition()->changePointer(nullptr);
+    delete this->getInventory();
+}

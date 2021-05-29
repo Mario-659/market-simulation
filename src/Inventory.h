@@ -27,6 +27,8 @@ public:
 
     ///Increments number of Items
     void incrementAmount();
+
+    ~Item() = default;
 private:
     ///Name of an Item
     std::string name;
@@ -68,6 +70,7 @@ public:
     ///Default list of every Item available to buy
     const static std::vector<Item> defaultListOfItems;
 
+    ~Inventory() = default;
 private:
     ///Global prices are added to Items when Shopkeeper restocks
     static int GlobalPrices;
@@ -76,7 +79,7 @@ private:
     unsigned money;
 
     ///Vector of Items
-    std::vector<Item> items;       //change to pointer???
+    std::vector<Item> items;
 };
 
 

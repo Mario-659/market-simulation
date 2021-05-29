@@ -22,6 +22,8 @@ public:
 
     ///Changes pointer
     void changePointer(Person*);
+
+    ~Position();
 private:
     ///Person
     Person* ptr;
@@ -46,6 +48,8 @@ public:
 
     ///Returns size
     unsigned getSize();
+
+    ~Map();
 private:
     ///Size of map
     const unsigned size;

@@ -15,6 +15,8 @@ public:
     void sell(Person* buyer, unsigned probabilityOfBuying);
 
     Shopkeeper(Position *position);
+
+    ~Shopkeeper();
 private:
     ///Restocks it's inventory
     void restock();

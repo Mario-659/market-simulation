@@ -14,6 +14,8 @@ public:
 
     ///Creates a Customer on given position with random probabilityOfBuying
     Customer(Position *position);
+
+    ~Customer();
 private:
     ///Probability of buying an Item (in range [70, 100] / 100)
     unsigned probabilityOfBuying;
