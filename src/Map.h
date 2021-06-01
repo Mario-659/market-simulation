@@ -46,6 +46,9 @@ public:
     ///Returns Position
     Position* getPosition(unsigned, unsigned);
 
+    ///Returns Position
+    Position* getPosition(unsigned);
+
     ///Returns size
     unsigned getSize();
 

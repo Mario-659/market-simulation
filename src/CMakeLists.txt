@@ -18,6 +18,8 @@ set(SOURCES
         Guard.h
         Random.cpp
         Random.h
+        Simulation.cpp
+        Simulation.h
         )
 
 add_executable(${CMAKE_PROJECT_NAME}_run ${SOURCES})

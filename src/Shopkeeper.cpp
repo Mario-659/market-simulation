@@ -79,7 +79,7 @@ void Shopkeeper::sell(Person* buyer, unsigned probabilityOfBuying)
         }
 
         itemToBuy->decrementAmount();
-        buyer->getInventory()->changeMoney(priceOfItem);
+        this->getInventory()->changeMoney(priceOfItem);
 
         buyer->getInventory()->changeMoney(-1 * priceOfItem);
         buyer->getInventory()->addItem(*itemToBuy);
@@ -112,3 +112,5 @@ Shopkeeper::~Shopkeeper()
     this->getPosition()->changePointer(nullptr);
     delete this->getInventory();
 }
+
+void Shopkeeper::move(Map *map) {}

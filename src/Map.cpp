@@ -6,6 +6,11 @@ Position* Map::getPosition(unsigned int x, unsigned int y)
     return (this -> board[i]);
 }
 
+Position* Map::getPosition(unsigned int i)
+{
+    return board[i];
+}
+
 
 Map::Map(unsigned int size) : size(size)
 {
