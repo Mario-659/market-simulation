@@ -6,6 +6,7 @@
 class Simulation
 {
 public:
+    ///Makes and populates map with given number of specimens
     Simulation(unsigned size, unsigned n_customers, unsigned n_shopkeepers, unsigned n_thieves, unsigned n_guards);
 
     ///Runs simulation for given number of iterations
@@ -17,14 +18,9 @@ public:
     ///Exports data to .csv
     void exportData();
 
-
+    ///Prints state of all species
+    void printSpecies();
 private:
-
-    ///Makes and populates map with given number of specimens
-    void makeMap(unsigned size, unsigned n_customers, unsigned n_shopkeepers, unsigned n_thieves, unsigned n_guards);
-
-
-
     ///Draws
     void draw();
 

@@ -8,7 +8,7 @@ class Shopkeeper :public Person
 {
 public:
     ///After 10 uses of this makeAction it will restock
-    void makeAction();
+    void makeAction(Map* map);
 
     void move(Map *map);
 

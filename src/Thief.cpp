@@ -34,7 +34,7 @@ void Thief::catchThief(Person *guard)
         Item item = this->getInventory()->getItems()->at(i);
         guard->getInventory()->addItem(item);
     }
-    //add delete thief
+    delete this;
 }
 
 Thief::~Thief(){

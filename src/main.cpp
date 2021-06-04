@@ -3,13 +3,13 @@
 
 int main()
 {
-    Simulation simulation(20, 15, 10, 5, 5);
+    Simulation simulation(2, 10, 5, 0, 0);
 
-    for(int i=0; i<1000; i++) {
+    for(int i=0; i<30; i++) {
+        simulation.printSpecies();
         simulation.nextIteration();
-        simulation.exportData();
+        std::cout << "Iteration: " << i << "\n";
     }
-
-
     return 0;
 }
+

@@ -33,20 +33,20 @@ TEST(ShopkeeperTest, ShopkeeperConstructor){
 }
 
 TEST(ShopkeeperTest, makeAction){
-    auto pos = new Position(13, 37);
-    Shopkeeper shopkeeper(pos);
+    auto map = new Map(5);
+    Shopkeeper shopkeeper(map->getPosition(2, 4));
     shopkeeper.getInventory()->changeMoney(100);
 
     Inventory previousState = *shopkeeper.getInventory();
 
-    for(int i=1; i<10; i++) shopkeeper.makeAction();     //increments counterToRestock, shouldn't restock yet
+    for(int i=1; i<10; i++) shopkeeper.makeAction(map);     //increments counterToRestock, shouldn't restock yet
 
     for(int i=0; i<shopkeeper.getInventory()->getItems()->size(); i++)
     {
         Item item = shopkeeper.getInventory()->getItems()->at(i);
         EXPECT_EQ(item.getAmount(), previousState.getItems()->at(i).getAmount()) << "Item " << item.getName() << "at index " << i << "restocked";
     }
-    shopkeeper.makeAction();           //should restock
+    shopkeeper.makeAction(map);           //should restock
     //checking if restocked
     bool inventoryChanged = false;
     for(int i=0; i<shopkeeper.getInventory()->getItems()->size(); i++)

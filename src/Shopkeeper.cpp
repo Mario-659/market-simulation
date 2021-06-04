@@ -8,7 +8,7 @@
 
 Shopkeeper::Shopkeeper(Position *position) : Person(position)
 {
-    this->margin = Random::getRandInt(0, 20);
+    this->margin = Random::getRandInt(0, 5);
     for(const auto & defaultItem : Inventory::defaultListOfItems)
     {
         this->getInventory()->addItem(defaultItem);
@@ -36,7 +36,7 @@ void Shopkeeper::restock()
     }
 }
 
-void Shopkeeper::makeAction()
+void Shopkeeper::makeAction(Map* map)
 {
     static int turnsCounter = 0;
 
@@ -84,9 +84,6 @@ void Shopkeeper::sell(Person* buyer, unsigned probabilityOfBuying)
         buyer->getInventory()->changeMoney(-1 * priceOfItem);
         buyer->getInventory()->addItem(*itemToBuy);
     }
-
-
-
 }
 
 void Shopkeeper::steal(Person* thief, unsigned probability)

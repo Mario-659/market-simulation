@@ -11,10 +11,18 @@
 
 #include <iostream>
 
-void Simulation::makeMap(unsigned int size, unsigned int n_customers, unsigned int n_shopkeepers,
-                         unsigned int n_thieves, unsigned int n_guards)
+
+
+void Simulation::nextIteration()
 {
-    //check if cust+shopkep+... < size*size
+    for(auto person: this->population) person->move(this->map);
+    for(auto person: this->population) person->makeAction(this->map);
+}
+
+Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int n_shopkeepers, unsigned int n_thieves,
+                       unsigned int n_guards)
+{
+    if(size*size < n_customers+n_shopkeepers+n_thieves+n_guards) throw std::invalid_argument("Size of the map is too small for given number of species");
 
     this->map = new Map(size);
 
@@ -60,23 +68,26 @@ void Simulation::makeMap(unsigned int size, unsigned int n_customers, unsigned i
     }
 }
 
-
-void Simulation::nextIteration()
+void Simulation::printSpecies()
 {
-    for(auto person: this->population) person->move(this->map);
-    for(auto person: this->population) person->makeAction(this->map);
+    for(auto testPerson: this->population)
+    {
+        std::cout << testPerson->getID() << " Pozycja: ( " << testPerson->getPosition()->getX() << ", " << testPerson->getPosition()->getY() <<
+                  ") Pieniadze: " << testPerson->getInventory()->getMoney() << std::endl;
+        if(testPerson->getInventory()->getItems()->size()>=1)
+        {
+            for(int i = 0; i<testPerson->getInventory()->getItems()->size(); i++)
+            {
+                std::cout << "\t Item nr " << i << ": " << testPerson->getInventory()->getItems()->at(i).getName()
+                          << " Ilosc: " << testPerson->getInventory()->getItems()->at(i).getAmount() << " cena: "
+                          << testPerson->getInventory()->getItems()->at(i).getPrice() << std::endl;
+            }
+        }
+        else
+        {
+            std::cout << " Brak itemow" << std::endl;
+        }
+    }
+
 }
 
-Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int n_shopkeepers, unsigned int n_thieves,
-                       unsigned int n_guards)
-{
-    Simulation::makeMap(size, n_customers, n_shopkeepers, n_thieves, n_guards);
-}
-
-void Simulation::exportData()
-{
-    Person* testShopkeeper = this->population.at(20);
-    std::cout << "Pozycja: ( " << testShopkeeper->getPosition()->getX() << ", " << testShopkeeper->getPosition()->getY() <<
-        ") Pieniadze: " << testShopkeeper->getInventory()->getMoney() << " jakis item: " << testShopkeeper->getInventory()->getItems()->at(0).getName()
-        << " Ilosc: " << testShopkeeper->getInventory()->getItems()->at(0).getAmount() <<" oraz cena: " << testShopkeeper->getInventory()->getItems()->at(0).getPrice() << std::endl;
-}
