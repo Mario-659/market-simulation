@@ -56,7 +56,7 @@ public:
     static void setGlobalPrices(int newGlobalPrices);
 
     ///Changes money
-    void changeMoney(int x);
+    void addMoney(int x);
 
     ///Returns money
     unsigned getMoney();

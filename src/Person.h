@@ -18,9 +18,6 @@ public:
     ///Returns counter
     static unsigned getCounter();
 
-//    ///
-//    void checkNeighbours(void action(), Map* map);
-
     ///Returns a pointer to Person's Position
     Position* getPosition();
 

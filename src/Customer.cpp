@@ -6,9 +6,8 @@
 Customer::Customer(Position *position) : Person(position)
 {
     probabilityOfBuying = Random::getRandInt(70, 100);   //probability of buying is in range [70, 100] / 100
-    this->getInventory()->changeMoney(Random::getRandInt(20, 80));    //gets random money in range [20, 80]
+    this->getInventory()->addMoney(Random::getRandInt(20, 80));    //gets random money in range [20, 80]
 }
-
 
 void Customer::makeAction(Map* map)
 {

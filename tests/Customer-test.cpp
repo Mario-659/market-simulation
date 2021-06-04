@@ -14,7 +14,7 @@ TEST(CustomerTest, CustomerConstructor){
 TEST(CustomerTest, makeAction){
     Map map(20);
     Customer customer(map.getPosition(1, 2));
-    customer.getInventory()->changeMoney(200);
+    customer.getInventory()->addMoney(200);
     Shopkeeper shopkeeper(map.getPosition(2, 1));
 
     Inventory previousStateShop = *shopkeeper.getInventory();

@@ -3,9 +3,6 @@
 
 #include <algorithm>
 
-
-
-
 Shopkeeper::Shopkeeper(Position *position) : Person(position)
 {
     this->margin = Random::getRandInt(0, 5);
@@ -29,7 +26,7 @@ void Shopkeeper::restock()
 
         if(shopInventory->getMoney() >= priceOfItem)
         {
-            shopInventory->changeMoney(-1 * priceOfItem);
+            shopInventory->addMoney(-1 * priceOfItem);
             shopInventory->getItems()->at(itemToRestock).incrementAmount();
         }
         else return;
@@ -79,9 +76,9 @@ void Shopkeeper::sell(Person* buyer, unsigned probabilityOfBuying)
         }
 
         itemToBuy->decrementAmount();
-        this->getInventory()->changeMoney(priceOfItem);
+        this->getInventory()->addMoney(priceOfItem);
 
-        buyer->getInventory()->changeMoney(-1 * priceOfItem);
+        buyer->getInventory()->addMoney(-1 * priceOfItem);
         buyer->getInventory()->addItem(*itemToBuy);
     }
 }

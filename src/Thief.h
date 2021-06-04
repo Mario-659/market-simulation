@@ -6,16 +6,18 @@
 class Thief :public Person
 {
 public:
-    ///Steals from Shopkeeper if near him (25% of Inventory)
+    ///Steals from Shopkeeper if near him
     void makeAction(Map* map);
 
+    ///Is caught by guard
     void catchThief(Person* guard);
 
+    ///Creates Thief with 0 money and empty Inventory
     Thief(Position* position);
 
     ~Thief();
 private:
-
+    ///Probability of stealing an Item
     unsigned probabilityOfStealing;
 };
 

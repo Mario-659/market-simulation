@@ -6,12 +6,6 @@ Position* Map::getPosition(unsigned int x, unsigned int y)
     return (this -> board[i]);
 }
 
-Position* Map::getPosition(unsigned int i)
-{
-    return board[i];
-}
-
-
 Map::Map(unsigned int size) : size(size)
 {
     unsigned boardSize = this->size * this->size;
@@ -27,9 +21,7 @@ Map::Map(unsigned int size) : size(size)
 
         this->board[i] = new Position(x, y);
     }
-
 }
-
 
 Position::Position(unsigned X, unsigned Y)
 {
@@ -38,37 +30,18 @@ Position::Position(unsigned X, unsigned Y)
     this->ptr = nullptr;
 }
 
-void Position::changePointer(Person *newPtr)
-{
-    this->ptr = newPtr;
-}
+void Position::changePointer(Person *newPtr){ this->ptr = newPtr; }
 
-unsigned int Position::getX()
-{
-    return this->x;
-}
+unsigned int Position::getX(){ return this->x; }
 
-unsigned int Position::getY()
-{
-    return this->y;
-}
+unsigned int Position::getY(){ return this->y; }
 
-Person * Position::getPerson()
-{
-    return this->ptr;
-}
+Person * Position::getPerson(){ return this->ptr; }
 
-unsigned int Map::getSize()
-{
-    return this->size;
-}
+unsigned int Map::getSize(){ return this->size; }
 
-Position::~Position()
-{
-    delete this->ptr;
-}
+Position* Map::getPosition(unsigned int i){ return board[i]; }
 
-Map::~Map()
-{
-    for(auto pos: this->board) delete pos;
-}
+Position::~Position(){ delete this->ptr; }
+
+Map::~Map(){ for(auto pos: this->board) delete pos; }

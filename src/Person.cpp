@@ -19,7 +19,6 @@ Person::Person(Position *x)
     this->id = counter;
     x->changePointer(this);
     this->inventory = new Inventory(0);
-
 }
 
 void Person::move(Map *map)
@@ -52,46 +51,14 @@ void Person::move(Map *map)
     this->position->changePointer(this);
 }
 
-//void Person::checkNeighbours(void (*action)(), Map* map)
-//{
-//    unsigned x, y;
-//
-//    x = this->position->getX();
-//    y = this->position->getY();
-//
-//    //checks near Positions
-//    for(int i=-1; i<2 ;i++)
-//    {
-//        if (x+i<0 || x+i>=map->getSize()) continue;  //checks if out of border
-//        for(int j=-1; j<2 ;j++)
-//        {
-//            if (y+j<0 || y+j>=map->getSize()) continue;   //checks if out of border
-//
-//            Person *otherPerson = map->getPosition(x+i, y+j)->getPerson();
-//            //if(otherPerson != nullptr) otherPerson->;
-//        }
-//    }
-//}
 
-unsigned int Person::getID()
-{
-    return this->id;
-}
+unsigned int Person::getID() { return this->id; }
 
-unsigned int Person::getCounter()
-{
-    return counter;
-}
+unsigned int Person::getCounter() { return counter; }
 
-Position * Person::getPosition()
-{
-    return this->position;
-}
+Position * Person::getPosition() { return this->position; }
 
-Inventory * Person::getInventory()
-{
-    return this->inventory;
-}
+Inventory * Person::getInventory() { return this->inventory; }
 
 Person::~Person()
 {

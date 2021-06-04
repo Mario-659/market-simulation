@@ -17,7 +17,7 @@ public:
 
     ~Customer();
 private:
-    ///Probability of buying an Item (in range [70, 100] / 100)
+    ///Probability of buying an Item (in range 70%-100%)
     unsigned probabilityOfBuying;
 };
 

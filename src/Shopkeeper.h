@@ -10,12 +10,16 @@ public:
     ///After 10 uses of this makeAction it will restock
     void makeAction(Map* map);
 
+    ///Stays in position
     void move(Map *map);
 
+    ///Gets robbed (every Item can be stolen with a chance of probability/100)
     void steal(Person* thief, unsigned probability);
 
+    ///Sells Items
     void sell(Person* buyer, unsigned probabilityOfBuying);
 
+    ///Creates a Shopkeeper with random Inventory and 0 money
     Shopkeeper(Position *position);
 
     ~Shopkeeper();

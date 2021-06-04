@@ -12,8 +12,6 @@ public:
     Guard(Position* position);
 
     ~Guard();
-private:
-
 };
 
 

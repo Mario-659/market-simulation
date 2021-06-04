@@ -1,5 +1,7 @@
-/cmake-build-debug/
+cmake-build-debug/
 
-.idea
+.idea/
 
 build/
+
+cmake-build-debug-coverage/

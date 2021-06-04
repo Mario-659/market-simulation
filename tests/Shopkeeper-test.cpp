@@ -35,7 +35,7 @@ TEST(ShopkeeperTest, ShopkeeperConstructor){
 TEST(ShopkeeperTest, makeAction){
     auto map = new Map(5);
     Shopkeeper shopkeeper(map->getPosition(2, 4));
-    shopkeeper.getInventory()->changeMoney(100);
+    shopkeeper.getInventory()->addMoney(100);
 
     Inventory previousState = *shopkeeper.getInventory();
 
@@ -63,7 +63,7 @@ TEST(ShopkeeperTest, sell){
     auto pos2 = new Position(11, 11);
     Shopkeeper shopkeeper(pos2);
     Inventory previousStateShop = *shopkeeper.getInventory();
-    customer.getInventory()->changeMoney(200);
+    customer.getInventory()->addMoney(200);
     Inventory previousStateCust = *customer.getInventory();
 
     shopkeeper.sell(&customer, customer.getProbability());
