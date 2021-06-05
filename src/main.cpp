@@ -3,7 +3,7 @@
 
 int main()
 {
-    Simulation simulation(3, 2, 2, 0, 0);
+    Simulation simulation(3, 2, 2, 1, 0);
 
 
 

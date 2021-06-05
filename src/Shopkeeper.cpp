@@ -112,6 +112,7 @@ void Shopkeeper::steal(Person* thief, unsigned probability)
 
     Inventory inventoryBefore = *this->getInventory();
 
+    bool stole = false;
     for(int i=0; i < sizeOfInventory; i++)                     //loop for every type of Item in Inventory
     {
         Item item = this->getInventory()->getItems()->at(i);
@@ -121,15 +122,19 @@ void Shopkeeper::steal(Person* thief, unsigned probability)
             {
                 thief->getInventory()->addItem(item);
                 this->getInventory()->getItems()->at(i).decrementAmount();
+                stole = true;
             }
         }
     }
 
-    unsigned exchangedItems, exchangedMoney;
-    exchangedItems = inventoryBefore.getAmountOfItems() - this->getInventory()->getAmountOfItems();
-    exchangedMoney = inventoryBefore.getMoney() - this->getInventory()->getMoney();
+    if(stole)
+    {
+        unsigned exchangedItems, exchangedMoney;
+        exchangedItems = inventoryBefore.getAmountOfItems() - this->getInventory()->getAmountOfItems();
+        exchangedMoney = inventoryBefore.getMoney() - this->getInventory()->getMoney();
 
-    Simulation::addEvent("stole", thief, this, exchangedItems, exchangedMoney);     //adds data about event
+        Simulation::addEvent("stole", thief, this, exchangedItems, exchangedMoney);     //adds data about event
+    }
 }
 
 Shopkeeper::~Shopkeeper()
