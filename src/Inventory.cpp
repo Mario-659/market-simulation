@@ -32,6 +32,13 @@ void Inventory::addMoney(int x)
     else this->money += x;
 }
 
+unsigned int Inventory::getAmountOfItems()
+{
+    unsigned nOfItems = 0;
+    for(auto item: *this->getItems()) nOfItems += item.getAmount();
+    return nOfItems;
+}
+
 void Inventory::setGlobalPrices(int newGlobalPrices){ Inventory::GlobalPrices = newGlobalPrices; }
 
 int Inventory::getGlobalPrices(){ return GlobalPrices; }

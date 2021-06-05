@@ -10,8 +10,11 @@
 #include "vector"
 
 #include <iostream>
+#include <fstream>
 
+std::vector<std::string*> Simulation::events;
 
+std::string Simulation::data;
 
 void Simulation::nextIteration()
 {
@@ -22,6 +25,8 @@ void Simulation::nextIteration()
 Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int n_shopkeepers, unsigned int n_thieves,
                        unsigned int n_guards)
 {
+    this->deletePreviousFiles();
+
     if(size*size < n_customers+n_shopkeepers+n_thieves+n_guards) throw std::invalid_argument("Size of the map is too small for given number of species");
 
     this->map = new Map(size);
@@ -88,6 +93,129 @@ void Simulation::printSpecies()
             std::cout << " Brak itemow" << std::endl;
         }
     }
-
 }
 
+void Simulation::addEvent(std::string type, Person* person, Person* otherPerson, unsigned numberOfItems, unsigned money)
+{
+    std::string specimen1, specimen2;
+    if(type == "bought")
+    {
+        specimen1 = "customer";
+        specimen2 = "shopkeeper";
+    }
+    else if (type == "stole")
+    {
+        specimen1 = "thief";
+        specimen2 = "shopkeeper";
+    }
+    else if (type == "caught")
+    {
+        specimen1 = "guard";
+        specimen2 = "thief";
+    }
+    else
+    {
+        specimen1 = "error";
+        specimen2 = "error";
+    }
+
+    std::string comma = ",";
+    std::string event = comma + type + comma + std::to_string(person->getID()) + comma + specimen1 + comma +
+            std::to_string(otherPerson->getID()) + comma + specimen2 +  comma + std::to_string(numberOfItems) + comma + std::to_string(money);
+    Simulation::events.push_back(new std::string(event));
+}
+
+void Simulation::addEvent(std::string type, Person* person, unsigned numberOfItems, unsigned money)
+{
+    std::string specimen1;
+    if(type == "restocked"){ specimen1 = "shopkeeper"; }
+    else{ specimen1 = "error"; }
+
+    std::string comma = ",";
+    std::string event = comma + type + comma + std::to_string(person->getID()) + comma + specimen1 + comma + "-" + comma + "-" + comma + std::to_string(numberOfItems) + comma + std::to_string(money);
+    Simulation::events.push_back(new std::string(event));
+}
+
+void Simulation::printEvents(unsigned turn)
+{
+    for(auto event: Simulation::events)
+    {
+        event->insert(0, std::to_string(turn));
+        std::cout << *event << std::endl;
+    }
+    for(auto event:Simulation::events) delete event;
+    Simulation::events.clear();
+}
+
+void Simulation::printEvents(unsigned turn, std::fstream* fstream)
+{
+    for(auto event: Simulation::events)
+    {
+        event->insert(0, std::to_string(turn));
+        *fstream << *event << std::endl;
+    }
+    for(auto event:Simulation::events) delete event;
+    Simulation::events.clear();
+}
+
+
+void Simulation::exportEvents(unsigned turn)
+{
+    std::fstream fs;
+    fs.open("Events.csv", std::fstream::in | std::fstream::out | std::fstream::app);
+    if(fs.is_open())
+    {
+        this->printEvents(turn, &fs);
+    }
+    else std::cout << "couldn't open file" << std::endl;       //to be changed
+
+    fs.close();
+}
+
+void Simulation::exportSpecies(unsigned int turn)
+{
+    std::fstream fs;
+    fs.open("Species.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+    if(fs.is_open())
+    {
+        fs << "________________________________________________________________________________" << std::endl;
+        fs << "Turn: " << turn << " Population: " << this->population.size() << " Shopkeepers: " << this->shopkeepersCounter <<
+                                                                                " Customers:  " << this->customersCounter <<
+                                                                                " Guards: " << this->guardsCounter <<
+                                                                                " Thieves: " << this->thievesCounter << std::endl;
+        int i = 1;
+        for(auto person: this->population)
+        {
+            std::string type;
+            if(i <= customersCounter) type = "Customer";
+            else if( i<= shopkeepersCounter + customersCounter) type = "Shopkeeper";
+            else if( i<= thievesCounter + customersCounter + shopkeepersCounter) type = "Thief";
+            else type = "Guard";
+            i++;
+
+            fs << type << " ID: " << person->getID() << " Position: ( " << person->getPosition()->getX() << ", "
+                      << person->getPosition()->getY() <<
+                      ") Money: " << person->getInventory()->getMoney() << std::endl;
+            if (person->getInventory()->getItems()->size() >= 1)
+            {
+                for (int i = 0; i < person->getInventory()->getItems()->size(); i++)
+                {
+                    fs << "\t Item nr " << i << ": " << person->getInventory()->getItems()->at(i).getName()
+                              << " Amount: " << person->getInventory()->getItems()->at(i).getAmount() << " Price: "
+                              << person->getInventory()->getItems()->at(i).getPrice() << std::endl;
+                }
+            }
+            else
+            {
+                fs << " No Items" << std::endl;
+            }
+        }
+    }
+    fs.close();
+}
+
+void Simulation::deletePreviousFiles()
+{
+    std::remove("Species.txt");
+    std::remove("Events.csv");
+}

@@ -1,6 +1,7 @@
 #ifndef MARKETSIMULATION_SIMULATION_H
 #define MARKETSIMULATION_SIMULATION_H
 
+#include <string>
 #include "Map.h"
 
 class Simulation
@@ -16,15 +17,34 @@ public:
     void nextIteration();
 
     ///Exports data to .csv
-    void exportData();
+    void exportEvents(unsigned turn);
+
+    void exportSpecies(unsigned turn);
 
     ///Prints state of all species
     void printSpecies();
+
+    void printEvents(unsigned turn);
+
+    void printEvents(unsigned turn, std::fstream* fstream);
+
+    static void addEvent(std::string type, Person* person, Person* otherPerson, unsigned numberOfItems, unsigned money);
+
+    static void addEvent(std::string type, Person* person, unsigned numberOfItems, unsigned money);
 private:
     ///Draws
     void draw();
 
     Map* map;
+
+    ///Counts turns
+    unsigned turn;
+
+    static std::string data;
+
+    static std::vector<std::string*> events;
+
+    void deletePreviousFiles();
 
     unsigned shopkeepersCounter;
 

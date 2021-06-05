@@ -61,6 +61,9 @@ public:
     ///Returns money
     unsigned getMoney();
 
+    ///Returns number of Items in Inventory
+    unsigned getAmountOfItems();
+
     ///Returns Items
     std::vector<Item>* getItems();
 

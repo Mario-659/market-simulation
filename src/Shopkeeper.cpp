@@ -1,5 +1,6 @@
 #include "Shopkeeper.h"
 #include "Random.h"
+#include "Simulation.h"
 
 #include <algorithm>
 
@@ -16,9 +17,12 @@ Shopkeeper::Shopkeeper(Position *position) : Person(position)
 
 void Shopkeeper::restock()
 {
+    Inventory inventoryBefore = *this->getInventory();
+
     int itemToRestock;
     Inventory* shopInventory = this->getInventory();
 
+    bool restocked;
     while(true)
     {
         itemToRestock = Random::getRandInt(0, Inventory::defaultListOfItems.size()-1);
@@ -28,8 +32,17 @@ void Shopkeeper::restock()
         {
             shopInventory->addMoney(-1 * priceOfItem);
             shopInventory->getItems()->at(itemToRestock).incrementAmount();
+            restocked = true;
         }
-        else return;
+        else break;
+    }
+    if(restocked)
+    {
+        unsigned exchangedItems, exchangedMoney;
+        exchangedItems = this->getInventory()->getAmountOfItems() - inventoryBefore.getAmountOfItems();
+        exchangedMoney = inventoryBefore.getMoney() - this->getInventory()->getMoney();
+
+        Simulation::addEvent("restocked", this, exchangedItems, exchangedMoney);     //adds data about event
     }
 }
 
@@ -47,13 +60,15 @@ void Shopkeeper::makeAction(Map* map)
 
 void Shopkeeper::sell(Person* buyer, unsigned probabilityOfBuying)
 {
+    Inventory inventoryBefore = *this->getInventory();
+
     unsigned sizeOfInventory = this->getInventory()->getItems()->size();    //size of Shopkeeper's Inventory
 
     std::vector<int> sequenceOfBuying;
-    for(int i=0; i<sizeOfInventory; i++) sequenceOfBuying.push_back(i);   // fills vector with {0, 1, 2, 3, ..., sizeOfInventory}
+    for(int i=0; i<sizeOfInventory; i++) sequenceOfBuying.push_back(i);   // fills vector with {0, 1, 2, 3, ..., sizeOfInventory-1}
     std::shuffle(sequenceOfBuying.begin(), sequenceOfBuying.end(), *Random::getGenerator());  //creates random order of buying Items
 
-    bool canBuy = true;
+    bool canBuy = true, bought = false;
     for(int i=0, j=0; Random::getDecision(probabilityOfBuying) && (canBuy==true); i++)    //int j counts Items customer cannot buy either because Shopkeeper has 0 number of given Item or the price is too high)
     {
         if(i >= sequenceOfBuying.size()) i = 0;
@@ -80,12 +95,22 @@ void Shopkeeper::sell(Person* buyer, unsigned probabilityOfBuying)
 
         buyer->getInventory()->addMoney(-1 * priceOfItem);
         buyer->getInventory()->addItem(*itemToBuy);
+        bought = true;
+    }
+    if(bought)
+    {
+        unsigned exchangedItems, exchangedMoney;
+        exchangedItems = inventoryBefore.getAmountOfItems() - this->getInventory()->getAmountOfItems();
+        exchangedMoney = this->getInventory()->getMoney() - inventoryBefore.getMoney();
+        Simulation::addEvent("bought", buyer, this, exchangedItems, exchangedMoney);     //adds data about event
     }
 }
 
 void Shopkeeper::steal(Person* thief, unsigned probability)
 {
     unsigned sizeOfInventory = this->getInventory()->getItems()->size();    //size of Shopkeeper's Inventory
+
+    Inventory inventoryBefore = *this->getInventory();
 
     for(int i=0; i < sizeOfInventory; i++)                     //loop for every type of Item in Inventory
     {
@@ -99,6 +124,12 @@ void Shopkeeper::steal(Person* thief, unsigned probability)
             }
         }
     }
+
+    unsigned exchangedItems, exchangedMoney;
+    exchangedItems = inventoryBefore.getAmountOfItems() - this->getInventory()->getAmountOfItems();
+    exchangedMoney = inventoryBefore.getMoney() - this->getInventory()->getMoney();
+
+    Simulation::addEvent("stole", thief, this, exchangedItems, exchangedMoney);     //adds data about event
 }
 
 Shopkeeper::~Shopkeeper()
