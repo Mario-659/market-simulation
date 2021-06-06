@@ -38,9 +38,17 @@ void Simulation::nextIteration()
 Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int n_shopkeepers, unsigned int n_thieves,
                        unsigned int n_guards)
 {
+    if(size*size < n_customers+n_shopkeepers+n_thieves+n_guards) throw std::invalid_argument("Size of the map is too small for given number of species");
+
     this->deletePreviousFiles();
 
-    if(size*size < n_customers+n_shopkeepers+n_thieves+n_guards) throw std::invalid_argument("Size of the map is too small for given number of species");
+    std::fstream fst;
+    fst.open("Events.csv",  std::fstream::in | std::fstream::out | std::fstream::app);
+    if(fst.is_open())
+    {
+        fst << "turn,typeOfAction,firstID,firstType,secondID,secondType,numberOfExchangedItems,exchangedMoney" << std::endl;
+    }
+    fst.close();
 
     this->map = new Map(size);
 
@@ -231,4 +239,11 @@ void Simulation::deletePreviousFiles()
 {
     std::remove("Species.txt");
     std::remove("Events.csv");
+}
+
+void Simulation::printWelcome()
+{
+    for(int i=0; i<50; i++) std::cout << "=";
+    std::cout << std::endl << "\t\t\tWelcome in Market Simulation" << std::endl << std::endl;
+    std::cout << "Please type parameters of the simulation";
 }

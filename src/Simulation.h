@@ -16,24 +16,26 @@ public:
     ///Next turn
     void nextIteration();
 
-    ///Exports data to .csv
+    ///Exports data about events to Events.csv
     void exportEvents(unsigned turn);
 
+    ///Exports data about state of species for every turn to Species.txt
     void exportSpecies(unsigned turn);
 
     ///Prints state of all species
     void printSpecies();
 
+    ///Prints every event
     void printEvents(unsigned turn);
 
-    void printEvents(unsigned turn, std::fstream* fstream);
-
+    ///Adds data about an event to buffer
     static void addEvent(std::string type, Person* person, Person* otherPerson, unsigned numberOfItems, unsigned money);
 
+    ///Adds data about an event to buffer
     static void addEvent(std::string type, Person* person, unsigned numberOfItems, unsigned money);
+
+    static void printWelcome();
 private:
-    ///Draws
-    void draw();
 
     Map* map;
 
@@ -44,7 +46,10 @@ private:
 
     static std::vector<std::string*> events;
 
+    ///Deletes data from previous run
     void deletePreviousFiles();
+
+    void printEvents(unsigned turn, std::fstream* fstream);
 
     unsigned shopkeepersCounter;
 
