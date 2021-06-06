@@ -18,8 +18,21 @@ std::string Simulation::data;
 
 void Simulation::nextIteration()
 {
-    for(auto person: this->population) person->move(this->map);
-    for(auto person: this->population) person->makeAction(this->map);
+    for(auto person: this->population) person->move(this->map);              //every Person other than Shopkeeper moves
+    for(auto person: this->population) person->makeAction(this->map);       //every Person makes action
+
+    for(int i=0; i<this->population.size(); i++)                // not sure whether this is gonna work (population.size after deleting one person;
+    {
+        if(this->population[i]->isKilled())
+        {
+            delete this->population[i];
+            this->population.erase(this->population.begin()+i);
+            if(i<customersCounter) customersCounter--;
+            else if(i<customersCounter+shopkeepersCounter) shopkeepersCounter--;
+            else if(i<customersCounter+shopkeepersCounter+thievesCounter) thievesCounter--;
+            else guardsCounter--;
+        }
+    }
 }
 
 Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int n_shopkeepers, unsigned int n_thieves,

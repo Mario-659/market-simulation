@@ -30,6 +30,10 @@ public:
     ///Creates a Person on given position and with 0 money in Inventory
     Person(Position*);
 
+    void kill();
+
+    bool isKilled();
+
 
     virtual ~Person();
 
@@ -58,6 +62,8 @@ private:
 
     ///Increments counter
     void incrementCounter();
+
+    bool isAlive;
 };
 
 

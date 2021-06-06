@@ -1,5 +1,6 @@
 #include "Thief.h"
 #include "Random.h"
+#include "Simulation.h"
 
 Thief::Thief(Position *position) : Person(position) {
     this->probabilityOfStealing = Random::getRandInt(0, 40);
@@ -28,13 +29,20 @@ void Thief::makeAction(Map* map)
 
 void Thief::catchThief(Person *guard)
 {
+    if(isKilled()) return;
+
     unsigned sizeOfInventory = this->getInventory()->getItems()->size();    //size of Thief's Inventory
     for(int i=0; i < sizeOfInventory; i++)                     //loop for every type of Item in Inventory
     {
         Item item = this->getInventory()->getItems()->at(i);
         guard->getInventory()->addItem(item);
     }
-    delete this;
+    this->kill();
+    unsigned exchangedItems, exchangedMoney;
+    exchangedItems = this->getInventory()->getAmountOfItems();
+    exchangedMoney = this->getInventory()->getMoney();
+    Simulation::addEvent("caught", guard, this, exchangedItems, exchangedMoney);     //adds data about event
+
 }
 
 Thief::~Thief(){

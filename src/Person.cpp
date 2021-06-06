@@ -10,6 +10,7 @@ Person::Person(Position *x, unsigned money)
     this->id = counter;
     x->changePointer(this);
     this->inventory = new Inventory(money);
+    this->isAlive = true;
 }
 
 Person::Person(Position *x)
@@ -19,6 +20,7 @@ Person::Person(Position *x)
     this->id = counter;
     x->changePointer(this);
     this->inventory = new Inventory(0);
+    this->isAlive = true;
 }
 
 void Person::move(Map *map)
@@ -51,6 +53,9 @@ void Person::move(Map *map)
     this->position->changePointer(this);
 }
 
+void Person::kill(){ this->isAlive = false; }
+
+bool Person::isKilled(){ return (!this->isAlive); }
 
 unsigned int Person::getID() { return this->id; }
 
