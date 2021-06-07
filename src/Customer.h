@@ -3,17 +3,38 @@
 
 #include "Person.h"
 
+/**
+ * @class Customer
+ *
+ * @brief Represents customer
+ *
+ * @details Buys Items from Shopkeeper
+ */
 class Customer :public Person
 {
 public:
-    ///Buys Items if near Shopkeeper
+    /**
+     * Default constructor for Customer
+     *
+     * @post Gets random amount of money and random value of `probabilityOfBuying`
+     * @param position Pointer to Position where Customer will be settled
+     */
+    Customer(Position *position);
+
+    /**
+     * Buys Items when near him
+     *
+     * @param map Pointer to map where other specimens are placed
+     */
     void makeAction(Map* map);
 
-    ///Returns probabilityOfBuying
+    /**
+     * Returns value of probabilityOfBuying
+     *
+     * @post Does not change the object
+     * @return Probability of buying
+     */
     unsigned getProbability();
-
-    ///Creates a Customer on given position with random probabilityOfBuying
-    Customer(Position *position);
 
     ~Customer();
 private:
