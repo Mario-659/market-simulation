@@ -7,7 +7,7 @@
 /**
  * @class Random
  *
- * Static class that generates random outcomes
+ * @brief Static class that generates random outcomes
  */
 class Random
 {

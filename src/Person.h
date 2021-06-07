@@ -7,7 +7,7 @@
 /**
  * @class Person
  *
- * Base class for species
+ * @brief Base class for species
  */
 class Person
 {
@@ -77,7 +77,7 @@ public:
     void kill();
 
     /**
-     * Returns `true` if `isAlive = false`
+     * Returns `true` if `isAlive == false`
      *
      * @post Does not change object
      * @return Bool value

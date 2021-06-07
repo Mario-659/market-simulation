@@ -8,7 +8,7 @@ class Person;
 /**
  * @class Position
  *
- * A class representing position on Map
+ * @brief A class representing position on Map
  */
 class Position
 {
@@ -70,7 +70,7 @@ private:
 /**
  * @class Map
  *
- * Stores board with Positions
+ * @brief Stores board with Positions
  */
 class Map
 {

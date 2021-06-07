@@ -16,7 +16,7 @@ public:
     /**
      * Default constructor for Customer
      *
-     * @post Gets random amount of money and random value of `probabilityOfBuying`
+     * @post Initializes random amount of money and random value of `probabilityOfBuying`
      * @param position Pointer to Position where Customer will be settled
      */
     Customer(Position *position);

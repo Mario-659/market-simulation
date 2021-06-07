@@ -7,7 +7,7 @@
 /**
  * @class Simulation
  *
- *
+ * @brief Runs simulation
  */
 class Simulation
 {
