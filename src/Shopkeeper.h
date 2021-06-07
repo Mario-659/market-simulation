@@ -4,23 +4,56 @@
 #include "Person.h"
 #include "Inventory.h"
 
+/**
+ * @class Shopkeeper
+ *
+ * @brief Represents shopkeeper
+ *
+ * @details Doesn't move. When initialized gets Inventory with items from Inventory::defaultListOfItems with random amount of every Item.
+ * Can trade with Customer and be robbed by Thief
+ */
 class Shopkeeper :public Person
 {
 public:
-    ///After 10 uses of this makeAction it will restock
+    ///Creates a Shopkeeper with random Inventory and 0 money
+    /**
+     * Default constructor for Shopkeeper
+     *
+     * @param position Position where Shopkeeper will be settled
+     */
+    Shopkeeper(Position *position);
+
+    /**
+     * After 10 calls it will restock (Shopkeeper::restock)
+     *
+     * @param map Map where other specimens are placed
+     */
     void makeAction(Map* map);
 
-    ///Stays in position
+    /**
+     * Stays in position
+     *
+     * @param map Map where other specimens are placed
+     */
     void move(Map *map);
 
-    ///Gets robbed (every Item can be stolen with a chance of probability/100)
+    /**
+     * Gets robbed by Thief
+     *
+     * There is `probability` chance of stealing an Item, loops for every Item
+     *
+     * @param thief Pointer to Thief
+     * @param probability Probability of stealing (see Random::getDecision)
+     */
     void steal(Person* thief, unsigned probability);
 
-    ///Sells Items
+    /**
+     * Sells Items to buyer
+     *
+     * @param buyer Pointer to Customer
+     * @param probabilityOfBuying Probability of buying (see Random::getDecision)
+     */
     void sell(Person* buyer, unsigned probabilityOfBuying);
-
-    ///Creates a Shopkeeper with random Inventory and 0 money
-    Shopkeeper(Position *position);
 
     ~Shopkeeper();
 private:
