@@ -1,12 +1,13 @@
 #include "Inventory.h"
 
-
-Item::Item(std::string name, unsigned int price)
+Item::Item(std::string name, unsigned int price, unsigned amount)
 {
     this->name = std::move(name);
     this->price = price;
-    this->amount = 0;
+    this->amount = amount;
 }
+
+Item::Item(std::string name, unsigned int price) : Item(name, price, 0){};
 
 void Inventory::addItem(Item item)
 {
