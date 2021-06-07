@@ -19,6 +19,7 @@ public:
     /**
      * Default constructor for Shopkeeper
      *
+     * @post Gets 0 money
      * @param position Position where Shopkeeper will be settled
      */
     Shopkeeper(Position *position);

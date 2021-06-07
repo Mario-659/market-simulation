@@ -3,17 +3,41 @@
 
 #include "Person.h"
 
+/**
+ * @class Thief
+ *
+ * @brief Represents shopkeeper
+ *
+ * @details Steals Items from Shopkeeper when near him. Can be caught by Guard
+ */
 class Thief :public Person
 {
 public:
-    ///Steals from Shopkeeper if near him
+    ///Creates Thief with 0 money and empty Inventory
+    /**
+     * Default constructor
+     *
+     * @post Gets 0 money and empty Inventory
+     * @param position
+     */
+    Thief(Position* position);
+
+    /**
+     * Steals from Shopkeeper when near him
+     *
+     * For more details see Shopkeeper::steal
+     *
+     * @param map Map where other specimens are placed
+     */
     void makeAction(Map* map);
 
-    ///Is caught by guard
+    /**
+     * Gets caught by Guard
+     *
+     * @post Gets killed
+     * @param guard Pointer to Guard that caught Thief
+     */
     void catchThief(Person* guard);
-
-    ///Creates Thief with 0 money and empty Inventory
-    Thief(Position* position);
 
     ~Thief();
 private:
