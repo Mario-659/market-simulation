@@ -4,48 +4,129 @@
 #include "Map.h"
 #include "Inventory.h"
 
-
+/**
+ * @class Person
+ *
+ * Base class for species
+ */
 class Person
 {
 public:
+    /**
+     * Default constructor for Person
+     *
+     * @post Person's Inventory has no items
+     * @param position Pointer to Position where Person is settled
+     * @param money Money in Person's Inventory
+     */
+    Person(Position* position, unsigned money);
 
-    ///Moves a Person to a random nearby Position if possible
-    virtual void move(Map *map);
+    /**
+     * Overloaded constructor for Person
+     *
+     * @post Person's Inventory has no items and 0 money
+     * @param position Pointer to Position where Person is settled
+     */
+    Person(Position* position);
 
-    ///Returns ID
+    /**
+     * Moves a Person to a random nearby Position if possible
+     *
+     * @post If move is possible Person changes Position
+     * @param map Pointer to map
+     */
+    virtual void move(Map* map);
+
+    /**
+     * Returns ID
+     *
+     * @post Does not change object
+     * @return ID
+     */
     unsigned getID();
 
-    ///Returns counter
+    /**
+     * Returns value of counter
+     *
+     * @post Does not change object
+     * @return Value of counter
+     */
     static unsigned getCounter();
 
-    ///Returns a pointer to Person's Position
+    /**
+     * Returns pointer to Person's Position
+     *
+     * @post Does not change object
+     * @return Pointer to Person's Position
+     */
     Position* getPosition();
 
-    ///Returns a pointer to Person's Inventory
+    /**
+     * Returns pointer to Person's Inventory
+     *
+     * @post Does not change object
+     * @return Pointer to Person's Inventory
+     */
     Inventory* getInventory();
 
-    ///Creates a Person on given position and with given money in Inventory
-    Person(Position*, unsigned money);
-
-    ///Creates a Person on given position and with 0 money in Inventory
-    Person(Position*);
-
+    /**
+     * Sets `isAlive` to `false`
+     *
+     * @post `isAlive` is set to `false`
+     */
     void kill();
 
+    /**
+     * Returns `true` if `isAlive = false`
+     *
+     * @post Does not change object
+     * @return Bool value
+     */
     bool isKilled();
 
-
-    virtual ~Person();
-
-    ///Makes action according to it's type
+    /**
+     * Makes actions according to it's type
+     *
+     * For more information see:
+     * * Shopkeeper::makeAction
+     * * Customer::makeAction
+     * * Thief::makeAction
+     * * Guard::makeAction
+     *
+     * @param map Pointer to Map with other specimens
+     */
     virtual void makeAction(Map* map);
 
+    /**
+     * Sells Items
+     *
+     * For more information see Shopkeeper::sell
+     *
+     * @param buyer Pointer to Customer that is buying
+     * @param probabilityOfBuying Probability of buying an Item
+     */
     virtual void sell(Person* buyer, unsigned probabilityOfBuying);
 
+    /**
+     * Gets robbed
+     *
+     * For more information see Shopkeeper::steal
+     *
+     * @param thief Pointer to Thief that is stealing
+     * @param probability Probability of stealing
+     */
     virtual void steal(Person* thief, unsigned probability);
 
+    /**
+     * Gets caught
+     *
+     * For more information see Thief::catchThief
+     *
+     * @param guard Pointer to Guard that is catching
+     */
     virtual void catchThief(Person* guard);
 
+    virtual ~Person();
 private:
 
     ///Person's Inventory
@@ -63,6 +144,7 @@ private:
     ///Increments counter
     void incrementCounter();
 
+    ///Person's state
     bool isAlive;
 };
 

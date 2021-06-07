@@ -3,25 +3,18 @@
 #include "Person.h"
 #include "Random.h"
 
-Person::Person(Position *x, unsigned money)
+Person::Person(Position* position, unsigned money)
 {
-    this->position = x;
+    this->position = position;
     incrementCounter();
     this->id = counter;
-    x->setPointer(this);
+    position->setPointer(this);
     this->inventory = new Inventory(money);
     this->isAlive = true;
 }
 
-Person::Person(Position *x)
-{
-    this->position = x;
-    incrementCounter();
-    this->id = counter;
-    x->setPointer(this);
-    this->inventory = new Inventory(0);
-    this->isAlive = true;
-}
+Person::Person(Position* position) : Person(position, 0){}
+
 
 void Person::move(Map *map)
 {

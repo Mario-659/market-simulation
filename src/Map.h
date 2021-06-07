@@ -54,7 +54,7 @@ public:
      */
     void setPointer(Person* newPtr);
 
-    ~Position();
+    ~Position() = default;
 private:
     ///Pointer to Person on position
     Person* ptr;
