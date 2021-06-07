@@ -3,11 +3,14 @@
 
 int main()
 {
+    for (int i = 0; i < 65; i++) std::cout << "=";
+    std::cout << std::endl << "\t\tWelcome in Market Simulation" << std::endl;
+    for (int i = 0; i < 65; i++) std::cout << "=";
+
+
     while(true)
     {
-        for (int i = 0; i < 65; i++) std::cout << "=";
-        std::cout << std::endl << "\t\tWelcome in Market Simulation" << std::endl;
-        for (int i = 0; i < 65; i++) std::cout << "=";
+
         std::cout << std::endl << std::endl << "Please type parameters of the simulation" << std::endl;
         unsigned nCustomers, nShopkeepers, nThieves, nGuards, size, nIterations;
         std::cout << "Size of the board: ";
@@ -26,14 +29,7 @@ int main()
         try
         {
             Simulation simulation(size, nCustomers, nShopkeepers, nThieves, nGuards);
-            for (int i = 0; i < nIterations; i++)
-            {
-                simulation.exportEvents(i);
-                simulation.exportSpecies(i);
-                simulation.nextIteration();
-            }
 
-            std::cout << "Data have been saved to \"Species.txt\" and to \"Events.csv\"";
             break;
         }
         catch(std::invalid_argument &e)
