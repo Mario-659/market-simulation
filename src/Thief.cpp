@@ -46,6 +46,6 @@ void Thief::catchThief(Person *guard)
 }
 
 Thief::~Thief(){
-    this->getPosition()->changePointer(nullptr);
+    this->getPosition()->setPointer(nullptr);
     delete this->getInventory();
 }

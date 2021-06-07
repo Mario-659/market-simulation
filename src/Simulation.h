@@ -33,8 +33,6 @@ public:
 
     ///Adds data about an event to buffer
     static void addEvent(std::string type, Person* person, unsigned numberOfItems, unsigned money);
-
-    static void printWelcome();
 private:
 
     Map* map;

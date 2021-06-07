@@ -62,7 +62,7 @@ Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int
         unsigned specimenPosition = specimenPlacement.at(i);
         Position* position = map->getPosition(specimenPosition);
         this->population.push_back(new Customer(position));
-        position->changePointer(this->population.back());
+        position->setPointer(this->population.back());
         this->customersCounter++;
     }
 
@@ -71,7 +71,7 @@ Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int
         unsigned specimenPosition = specimenPlacement.at(i);
         Position* position = map->getPosition(specimenPosition);
         this->population.push_back(new Shopkeeper(position));
-        position->changePointer(this->population.back());
+        position->setPointer(this->population.back());
         this->shopkeepersCounter++;
     }
 
@@ -80,7 +80,7 @@ Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int
         unsigned specimenPosition = specimenPlacement.at(i);
         Position* position = map->getPosition(specimenPosition);
         this->population.push_back(new Thief(position));
-        position->changePointer(this->population.back());
+        position->setPointer(this->population.back());
         this->thievesCounter++;
     }
 
@@ -89,7 +89,7 @@ Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int
         unsigned specimenPosition = specimenPlacement.at(i);
         Position* position = map->getPosition(specimenPosition);
         this->population.push_back(new Guard(position));
-        position->changePointer(this->population.back());
+        position->setPointer(this->population.back());
         this->guardsCounter++;
     }
 }
@@ -241,9 +241,14 @@ void Simulation::deletePreviousFiles()
     std::remove("Events.csv");
 }
 
-void Simulation::printWelcome()
+void Simulation::runSimulation(unsigned int n_iterations)
 {
-    for(int i=0; i<50; i++) std::cout << "=";
-    std::cout << std::endl << "\t\t\tWelcome in Market Simulation" << std::endl << std::endl;
-    std::cout << "Please type parameters of the simulation";
+    this->exportSpecies(0);         //exports data before first iteration
+    for (int i = 1; i < n_iterations; i++)
+    {
+        this->nextIteration();
+        this->exportEvents(i);
+        this->exportSpecies(i);
+    }
+    std::cout << R"(Data have been saved to "Species.txt" and to "Events.csv")";
 }

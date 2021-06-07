@@ -8,7 +8,7 @@ Person::Person(Position *x, unsigned money)
     this->position = x;
     incrementCounter();
     this->id = counter;
-    x->changePointer(this);
+    x->setPointer(this);
     this->inventory = new Inventory(money);
     this->isAlive = true;
 }
@@ -18,7 +18,7 @@ Person::Person(Position *x)
     this->position = x;
     incrementCounter();
     this->id = counter;
-    x->changePointer(this);
+    x->setPointer(this);
     this->inventory = new Inventory(0);
     this->isAlive = true;
 }
@@ -48,9 +48,9 @@ void Person::move(Map *map)
 
 
     unsigned newPosition = Random::getRandInt(0, freePositions.size()-1);
-    this->position->changePointer(nullptr);
+    this->position->setPointer(nullptr);
     this->position = freePositions[newPosition];
-    this->position->changePointer(this);
+    this->position->setPointer(this);
 }
 
 void Person::kill(){ this->isAlive = false; }
@@ -67,7 +67,7 @@ Inventory * Person::getInventory() { return this->inventory; }
 
 Person::~Person()
 {
-    this->position->changePointer(nullptr);
+    this->position->setPointer(nullptr);
 }
 
 void Person::incrementCounter(){this->counter++;}

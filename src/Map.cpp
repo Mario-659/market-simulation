@@ -30,7 +30,7 @@ Position::Position(unsigned X, unsigned Y)
     this->ptr = nullptr;
 }
 
-void Position::changePointer(Person *newPtr){ this->ptr = newPtr; }
+void Position::setPointer(Person *newPtr){ this->ptr = newPtr; }
 
 unsigned int Position::getX(){ return this->x; }
 

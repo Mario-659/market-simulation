@@ -3,6 +3,11 @@
 
 #include "Person.h"
 
+/**
+ * Catches Thief when near him
+ *
+ *
+ */
 class Guard :public Person
 {
 public:

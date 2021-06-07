@@ -5,27 +5,58 @@
 
 class Person;
 
+/**
+ * @class Position
+ *
+ * A class representing position on Map
+ */
 class Position
 {
 public:
-    ///Creates a position with given coordinates and nullptr
+    /**
+     * Default constructor
+     *
+     * @post Pointer is initialized to nullptr
+     * @param X X coordinate
+     * @param Y Y coordinate
+     */
     Position(unsigned X, unsigned Y);
 
-    ///Returns Person
+    /**
+     * Returns pointer to Person
+     *
+     * @post Does not change the object
+     * @return Pointer to Person
+     */
     Person* getPerson();
 
-    ///Returns x coordinate
+    /**
+     * Returns x coordinate
+     *
+     * @post Does not change the object
+     * @return x coordinate
+     */
     unsigned getX();
 
-    ///Returns y coordinate
+    /**
+     * Returns y coordinate
+     *
+     * @post Does not change the object
+     * @return y coordinate
+     */
     unsigned getY();
 
-    ///Changes pointer
-    void changePointer(Person*);
+    /**
+     * Sets new pointer
+     *
+     * @post Pointer will be updated with new value
+     * @param newPtr New value of pointer
+     */
+    void setPointer(Person* newPtr);
 
     ~Position();
 private:
-    ///Person
+    ///Pointer to Person on position
     Person* ptr;
 
     ///X coordinate
@@ -36,20 +67,48 @@ private:
 };
 
 
-
+/**
+ * @class Map
+ *
+ * Stores board with Positions
+ */
 class Map
 {
 public:
-    ///Creates a map with given size (square with a side of size)
-    Map(const unsigned size);
+    /**
+     * Default constructor
+     *
+     * Creates a square map with side of size and every position with nullptr
+     *
+     * @param size Size of map
+     */
+    Map(unsigned size);
 
-    ///Returns Position
-    Position* getPosition(unsigned, unsigned);
+    /**
+     * Returns Position with given coordinates
+     *
+     * @post Does not change the object
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @return Pointer to Position
+     */
+    Position* getPosition(unsigned x, unsigned y);
 
-    ///Returns Position
-    Position* getPosition(unsigned);
+    /**
+     * Returns Position with given index
+     *
+     * @post Does not change the object
+     * @param i Index of position in board
+     * @return Pointer to Position
+     */
+    Position* getPosition(unsigned i);
 
-    ///Returns size
+    /**
+     * Returns size of the map
+     *
+     * @post Does not change the object
+     * @return Size of the map
+     */
     unsigned getSize();
 
     ~Map();

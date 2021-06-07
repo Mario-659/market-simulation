@@ -34,6 +34,6 @@ unsigned int Customer::getProbability() { return this->probabilityOfBuying; }
 
 Customer::~Customer()
 {
-    this->getPosition()->changePointer(nullptr);
+    this->getPosition()->setPointer(nullptr);
     delete this->getInventory();
 }
