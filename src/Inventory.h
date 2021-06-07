@@ -6,9 +6,9 @@
 
 /**
  * @class Item
- * @brief A class representing type of item in inventory
+ * @brief A class representing type of item in Inventory
  *
- * This class represents a type of item not item itself so that it also consists of number of items. For example name = "carrot", price = 3, amount = 4
+ * This class represents a type of item not item itself so that it also consists of number of items. For example `name = "carrot"`, `price = 3`, `amount = 4`
  */
 class Item
 {

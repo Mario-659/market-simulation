@@ -4,11 +4,7 @@
 
 std::default_random_engine Random::generator(std::time(0));
 
-double Random::getRandDouble(double min, double max)
-{
-    std::uniform_real_distribution<double> distribution(min, max);
-    return distribution(generator);
-}
+
 
 int Random::getRandInt(int min, int max)
 {
@@ -27,3 +23,9 @@ std::default_random_engine * Random::getGenerator()
 {
     return &Random::generator;
 }
+
+//double Random::getRandDouble(double min, double max)
+//{
+//    std::uniform_real_distribution<double> distribution(min, max);
+//    return distribution(generator);
+//}
