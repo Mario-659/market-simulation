@@ -63,6 +63,9 @@ private:
 
     ///Margin is added to Item price when selling
     unsigned margin;
+
+    ///Counter to restock
+    unsigned restockCounter;
 };
 
 

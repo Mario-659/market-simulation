@@ -21,19 +21,40 @@ void Simulation::nextIteration()
     for(auto person: this->population) person->move(this->map);              //every Person other than Shopkeeper moves
     for(auto person: this->population) person->makeAction(this->map);       //every Person makes action
 
-    for(int i=0; i<this->population.size(); i++)                // not sure whether this is gonna work (population.size after deleting one person;
+    for(int i=0; i<this->population.size(); i++)
     {
         if(this->population[i]->isKilled())
         {
+            Position* position = population[i]->getPosition();
             delete this->population[i];
-            this->population.erase(this->population.begin()+i);
-            if(i<customersCounter) customersCounter--;
-            else if(i<customersCounter+shopkeepersCounter) shopkeepersCounter--;
-            else if(i<customersCounter+shopkeepersCounter+thievesCounter) thievesCounter--;
-            else guardsCounter--;
+
+            if(i<customersCounter) population[i] = new Customer(position);
+            else if(i<customersCounter+shopkeepersCounter) population[i] = new Shopkeeper(position);
+            else if(i<customersCounter+shopkeepersCounter+thievesCounter) population[i] = new Thief(position);
+            else population[i] = new Guard(position);
         }
     }
 }
+
+        //version below works for species that cannot move out of border (doesn't make new person when killed)
+//void Simulation::nextIteration()
+//{
+//    for(auto person: this->population) person->move(this->map);              //every Person other than Shopkeeper moves
+//    for(auto person: this->population) person->makeAction(this->map);       //every Person makes action
+//
+//    for(int i=0; i<this->population.size(); i++)
+//    {
+//        if(this->population[i]->isKilled())
+//        {
+//            delete this->population[i];
+//            this->population.erase(this->population.begin()+i);
+//            if(i<customersCounter) customersCounter--;
+//            else if(i<customersCounter+shopkeepersCounter) shopkeepersCounter--;
+//            else if(i<customersCounter+shopkeepersCounter+thievesCounter) thievesCounter--;
+//            else guardsCounter--;
+//        }
+//    }
+//}
 
 Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int n_shopkeepers, unsigned int n_thieves,
                        unsigned int n_guards)
@@ -51,7 +72,6 @@ Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int
     fst.close();
 
     this->map = new Map(size);
-
 
     std::vector<unsigned> specimenPlacement;
     for(int i=0; i<size*size; i++) specimenPlacement.push_back(i);
@@ -150,6 +170,7 @@ void Simulation::addEvent(std::string type, Person* person, unsigned numberOfIte
 {
     std::string specimen1;
     if(type == "restocked"){ specimen1 = "shopkeeper"; }
+    else if(type =="movedOutOfBorder"){specimen1 = "-";}
     else{ specimen1 = "error"; }
 
     std::string comma = ",";

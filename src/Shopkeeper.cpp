@@ -6,6 +6,7 @@
 
 Shopkeeper::Shopkeeper(Position *position) : Person(position)
 {
+    this->restockCounter = 0;
     this->margin = Random::getRandInt(0, 5);
     for(const auto & defaultItem : Inventory::defaultListOfItems)
     {
@@ -48,12 +49,11 @@ void Shopkeeper::restock()
 
 void Shopkeeper::makeAction(Map* map)
 {
-    static int turnsCounter = 0;
+    this->restockCounter++;
 
-    turnsCounter++;
-    if(turnsCounter == 10)
+    if(this->restockCounter == 10)
     {
-        turnsCounter = 0;
+        this->restockCounter = 0;
         this->restock();
     }
 }
