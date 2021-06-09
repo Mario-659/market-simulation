@@ -40,6 +40,8 @@ unsigned int Inventory::getAmountOfItems()
     return nOfItems;
 }
 
+void Item::addMargin(unsigned int margin){ this->price+=margin; }
+
 void Inventory::setGlobalPrices(int newGlobalPrices){ Inventory::GlobalPrices = newGlobalPrices; }
 
 int Inventory::getGlobalPrices(){ return GlobalPrices; }

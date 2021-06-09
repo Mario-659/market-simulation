@@ -64,6 +64,14 @@ public:
     void setAmount(unsigned newAmount);
 
     /**
+     * Adds margin to price of an Item
+     *
+     * @post Margin will be added to price
+     * @param margin Margin added to price
+     */
+    void addMargin(unsigned margin);
+
+    /**
      * Decrements amount of items
      *
      * @post The amount of items will be decremented

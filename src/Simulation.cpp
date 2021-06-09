@@ -269,12 +269,14 @@ void Simulation::deletePreviousFiles()
 
 void Simulation::runSimulation(unsigned int n_iterations)
 {
+    this->turn = 1;
     this->exportSpecies(0);         //exports data before first iteration
-    for (int i = 1; i < n_iterations; i++)
+    while(this->turn < n_iterations)
     {
         this->nextIteration();
-        this->exportEvents(i);
-        this->exportSpecies(i);
+        this->exportEvents(turn);
+        this->exportSpecies(turn);
+        turn++;
     }
     std::cout << R"(Data have been saved to "Species.txt" and to "Events.csv")";
 }

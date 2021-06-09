@@ -13,6 +13,7 @@ Shopkeeper::Shopkeeper(Position *position) : Person(position)
         this->getInventory()->addItem(defaultItem);
         int numberOfItems = Random::getRandInt(0, 6);
         this->getInventory()->getItems()->back().setAmount(numberOfItems);
+        this->getInventory()->getItems()->back().addMargin(this->margin);
     }
 }
 
@@ -74,7 +75,7 @@ void Shopkeeper::sell(Person* buyer, unsigned probabilityOfBuying)
         if(i >= sequenceOfBuying.size()) i = 0;
 
         Item* itemToBuy = &(this->getInventory()->getItems()->at(sequenceOfBuying.at(i)));
-        unsigned priceOfItem = itemToBuy->getPrice() + this->margin;
+        unsigned priceOfItem = itemToBuy->getPrice();
 
         if(itemToBuy->getAmount() == 0)        //checks if number of given Item in sellersInventory is != 0
         {
