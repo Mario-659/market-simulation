@@ -42,6 +42,4 @@ unsigned int Map::getSize(){ return this->size; }
 
 Position* Map::getPosition(unsigned int i){ return board[i]; }
 
-//Position::~Position(){ delete this->ptr; }
-
 Map::~Map(){ for(auto pos: this->board) delete pos; }

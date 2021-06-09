@@ -1,8 +1,9 @@
+#include <algorithm>
+
 #include "Shopkeeper.h"
 #include "Random.h"
 #include "Simulation.h"
 
-#include <algorithm>
 
 Shopkeeper::Shopkeeper(Position *position) : Person(position)
 {

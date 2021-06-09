@@ -1,7 +1,6 @@
 #include "Customer.h"
-
 #include "Random.h"
-#include <algorithm>
+
 
 Customer::Customer(Position *position) : Person(position)
 {

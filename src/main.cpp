@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "Simulation.h"
 
 int main()
@@ -6,7 +7,6 @@ int main()
     for (int i = 0; i < 65; i++) std::cout << "=";
     std::cout << std::endl << "\t\tWelcome in Market Simulation" << std::endl;
     for (int i = 0; i < 65; i++) std::cout << "=";
-
 
     while(true)
     {
@@ -38,10 +38,6 @@ int main()
             continue;
         }
     }
-
-
-//    Simulation simulation(9, 30, 20, 3, 2);
-//    simulation.runSimulation(20);
 
     return 0;
 }

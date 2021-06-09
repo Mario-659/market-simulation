@@ -1,16 +1,14 @@
+#include <algorithm>
+#include <vector>
+#include <iostream>
+#include <fstream>
+
 #include "Simulation.h"
 #include "Shopkeeper.h"
 #include "Customer.h"
 #include "Thief.h"
 #include "Guard.h"
-
 #include "Random.h"
-#include "Map.h"
-#include <algorithm>
-#include "vector"
-
-#include <iostream>
-#include <fstream>
 
 std::vector<std::string*> Simulation::events;
 
@@ -35,26 +33,6 @@ void Simulation::nextIteration()
         }
     }
 }
-
-        //version below works for species that cannot move out of border (doesn't make new person when killed)
-//void Simulation::nextIteration()
-//{
-//    for(auto person: this->population) person->move(this->map);              //every Person other than Shopkeeper moves
-//    for(auto person: this->population) person->makeAction(this->map);       //every Person makes action
-//
-//    for(int i=0; i<this->population.size(); i++)
-//    {
-//        if(this->population[i]->isKilled())
-//        {
-//            delete this->population[i];
-//            this->population.erase(this->population.begin()+i);
-//            if(i<customersCounter) customersCounter--;
-//            else if(i<customersCounter+shopkeepersCounter) shopkeepersCounter--;
-//            else if(i<customersCounter+shopkeepersCounter+thievesCounter) thievesCounter--;
-//            else guardsCounter--;
-//        }
-//    }
-//}
 
 Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int n_shopkeepers, unsigned int n_thieves,
                        unsigned int n_guards)
@@ -280,3 +258,23 @@ void Simulation::runSimulation(unsigned int n_iterations)
     }
     std::cout << R"(Data have been saved to "Species.txt" and to "Events.csv")";
 }
+
+//version below works for species that cannot move out of border (doesn't make new person when killed)
+//void Simulation::nextIteration()
+//{
+//    for(auto person: this->population) person->move(this->map);              //every Person other than Shopkeeper moves
+//    for(auto person: this->population) person->makeAction(this->map);       //every Person makes action
+//
+//    for(int i=0; i<this->population.size(); i++)
+//    {
+//        if(this->population[i]->isKilled())
+//        {
+//            delete this->population[i];
+//            this->population.erase(this->population.begin()+i);
+//            if(i<customersCounter) customersCounter--;
+//            else if(i<customersCounter+shopkeepersCounter) shopkeepersCounter--;
+//            else if(i<customersCounter+shopkeepersCounter+thievesCounter) thievesCounter--;
+//            else guardsCounter--;
+//        }
+//    }
+//}

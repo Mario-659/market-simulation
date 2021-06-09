@@ -2,6 +2,7 @@
 #define MARKETSIMULATION_SIMULATION_H
 
 #include <string>
+
 #include "Map.h"
 
 /**

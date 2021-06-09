@@ -55,36 +55,6 @@ void Person::move(Map *map)
     }
 }
 
-        //version below does not allow moving out of border
-//void Person::move(Map *map)
-//{
-//
-//    unsigned x, y;
-//
-//    x = this->position->getX();
-//    y = this->position->getY();
-//
-//    std::vector<Position*> freePositions;
-//
-//    //checks near Positions
-//    for(int i=-1; i<2 ;i++)
-//    {
-//        if (x+i<0 || x+i>=map->getSize()) continue;  //checks if out of border
-//        for(int j=-1; j<2 ;j++)
-//        {
-//            if (y+j<0 || y+j>=map->getSize()) continue;   //checks if out of border
-//            if(map->getPosition(x+i, y+j)->getPerson() == nullptr) freePositions.push_back(map->getPosition(x+i, y+j));
-//        }
-//    }
-//
-//    if(freePositions.empty()) return; //no Positions available
-//
-//
-//    unsigned newPosition = Random::getRandInt(0, freePositions.size()-1);
-//    this->position->setPointer(nullptr);
-//    this->position = freePositions[newPosition];
-//    this->position->setPointer(this);
-//}
 
 void Person::kill(){ this->isAlive = false; }
 
@@ -114,3 +84,34 @@ void Person::sell(Person* buyer, unsigned probabilityOfBuying) {};
 void Person::steal(Person* thief, unsigned probability) {};
 
 void Person::catchThief(Person* guard) {};
+
+//version below does not allow moving out of border
+//void Person::move(Map *map)
+//{
+//
+//    unsigned x, y;
+//
+//    x = this->position->getX();
+//    y = this->position->getY();
+//
+//    std::vector<Position*> freePositions;
+//
+//    //checks near Positions
+//    for(int i=-1; i<2 ;i++)
+//    {
+//        if (x+i<0 || x+i>=map->getSize()) continue;  //checks if out of border
+//        for(int j=-1; j<2 ;j++)
+//        {
+//            if (y+j<0 || y+j>=map->getSize()) continue;   //checks if out of border
+//            if(map->getPosition(x+i, y+j)->getPerson() == nullptr) freePositions.push_back(map->getPosition(x+i, y+j));
+//        }
+//    }
+//
+//    if(freePositions.empty()) return; //no Positions available
+//
+//
+//    unsigned newPosition = Random::getRandInt(0, freePositions.size()-1);
+//    this->position->setPointer(nullptr);
+//    this->position = freePositions[newPosition];
+//    this->position->setPointer(this);
+//}
