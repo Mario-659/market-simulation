@@ -114,19 +114,16 @@ TEST(PersonTest, moveOneFreePos){
     EXPECT_EQ(map.getPosition(5,4)->getPerson(), &person) << "Person hasn't settled in only available Position";
 }
 
-TEST(PersonTest, moveNearBorder){
-    Map map(14);
-    Person person(map.getPosition(0,0));
 
-    person.move(&map);
-    EXPECT_FALSE(map.getPosition(0,0)->getPerson() == &person) << "Previous Position hasn't changed";
+//Testing if Person is killed when moves out of border
+TEST(PersonTest, moveOutOfBorder){
+    Map map(1);
+    auto person = new Person(map.getPosition(0, 0));
 
-    //Checking nearby position's pointers
-    unsigned i = 0;
-    if(map.getPosition(0,1)->getPerson()!= nullptr) i++;
-    if(map.getPosition(1,0)->getPerson()!= nullptr) i++;
-    if(map.getPosition(1,1)->getPerson()!= nullptr) i++;
+    EXPECT_EQ(map.getPosition(0)->getPerson(), person);
 
-    EXPECT_EQ(i, 1) << i << " Positions are populated (instead of 1)";
+    person->move(&map);
 
+    EXPECT_EQ( map.getPosition(0)->getPerson(), nullptr);
+    EXPECT_TRUE(person->isKilled());
 }
