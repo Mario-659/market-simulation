@@ -77,6 +77,11 @@ Simulation::Simulation(unsigned int size, unsigned int n_customers, unsigned int
     for(int i=0; i<size*size; i++) specimenPlacement.push_back(i);
     std::shuffle(specimenPlacement.begin(), specimenPlacement.end(), *Random::getGenerator());
 
+    this->customersCounter = 0;
+    this->shopkeepersCounter = 0;
+    this->thievesCounter = 0;
+    this->guardsCounter = 0;
+
     for (unsigned i=0; i<n_customers; i++)                    //populating map with customers
     {
         unsigned specimenPosition = specimenPlacement.at(i);
