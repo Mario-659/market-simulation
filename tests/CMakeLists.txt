@@ -9,7 +9,7 @@ set(TEST_SOURCES
         Inventory-test.cpp
         Shopkeeper-test.cpp
         Customer-test.cpp
-        )
+        Simulation-test.cpp)
 
 add_executable(${CMAKE_PROJECT_NAME}_tst ${TEST_SOURCES})
 
